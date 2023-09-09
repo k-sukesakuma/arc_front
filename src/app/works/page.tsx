@@ -1,8 +1,10 @@
 'use client';
-import React, { useRef } from 'react';
+import React from 'react';
 import Aside from '../components/Aside';
 import WorksHeader from '../components/WorksHeader';
 import Cards from '../components/Cards';
+
+import Motion from '../components/motionWrapper/MotionWrapper';
 
 const page = () => {
 	return (
@@ -10,8 +12,10 @@ const page = () => {
 			<main className="flex bg-slate-100 relative">
 				<Aside />
 				<section className="flex-grow">
-					<WorksHeader />
-					<Cards />
+					<Motion>
+						<WorksHeader />
+						<Cards />
+					</Motion>
 				</section>
 			</main>
 		</div>

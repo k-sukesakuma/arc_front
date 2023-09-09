@@ -12,15 +12,15 @@ export default function CodeEditor() {
 		if (!editorRef.current) return;
 
 		const state = EditorState.create({
-			doc: 'Hello, I`m ActiveRecorder',
+			doc: 'Welcome to Arc👋',
 			extensions: [
 				basicSetup,
 				javascript(),
 				oneDark,
 				EditorView.baseTheme({
 					'&': {
-						height: '500px',
-						width: '500px',
+						height: '445px',
+						width: '590px',
 					},
 				}),
 			],

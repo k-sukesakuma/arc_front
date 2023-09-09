@@ -22,13 +22,13 @@ export default function ChapterCards() {
 				<hr className="mt-1 mb-2 rounded-lg" />
 				<div>
 					<div className="px-4 py-3 font-semibold rounded-lg hover:bg-slate-200">
-						<Link href={`/works/${slug}`}>allメソッドによるデータの取得</Link>
+						<Link href={`/works/${slug}/1`}>allメソッドによるデータの取得</Link>
 					</div>
 					<div className="px-4 py-3 font-semibold rounded-lg hover:bg-slate-200">
-						<Link href={`/works/${slug}`}>allメソッドによるデータの取得</Link>
+						<Link href={`/works/${slug}/1`}>allメソッドによるデータの取得</Link>
 					</div>
-					<div className="px-4 py-3 font-semibold rounded-lg ">
-						<Link href={`/works/`}>allメソッドによるデータの取得</Link>
+					<div className="px-4 py-3 font-semibold rounded-lg hover:bg-slate-200">
+						<Link href={`/works/${slug}/1`}>allメソッドによるデータの取得</Link>
 					</div>
 				</div>
 			</div>
