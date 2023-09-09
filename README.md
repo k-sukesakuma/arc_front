@@ -6,3 +6,4 @@
 - axios
 - flowbite
 - flowbite-react
+- framer-motion
