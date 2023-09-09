@@ -17,7 +17,7 @@ export default function Cards() {
 					</p>
 					<Link
 						href="/works/trial"
-						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none 0"
+						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-500"
 					>
 						こちらから
 						<svg
@@ -48,7 +48,7 @@ export default function Cards() {
 					</p>
 					<Link
 						href="/works/basic"
-						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none 0"
+						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-700"
 					>
 						こちらから
 						<svg
@@ -81,7 +81,7 @@ export default function Cards() {
 					</p>
 					<Link
 						href="/works/intermediate"
-						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none 0"
+						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-700"
 					>
 						こちらから
 						<svg
@@ -112,7 +112,7 @@ export default function Cards() {
 					</p>
 					<Link
 						href="/works/advanced"
-						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none 0"
+						className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-700"
 					>
 						こちらから
 						<svg

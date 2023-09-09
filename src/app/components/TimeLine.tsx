@@ -2,7 +2,7 @@ import React from 'react';
 
 const TimeLine = () => {
 	return (
-		<section className="relative mx-auto max-w-5xl  sm:px-6  overflow-hidden">
+		<section className="relative mx-auto max-w-7xl  sm:px-6  overflow-hidden">
 			<article className="md:flex">
 				<div className="container mx-auto w-full h-full">
 					<div className="relative wrap overflow-hidden h-full">
@@ -17,18 +17,11 @@ const TimeLine = () => {
 								<h1 className="mx-auto font-semibold text-lg text-white">1</h1>
 							</div>
 							<div className="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
-								<h3 className="mb-3 font-bold text-gray-700 text-xl">
+								<h3 className="mb-3 font-bold text-gray-700 text-2xl">
 									問題集を選択
 								</h3>
-								<p className="text-sm leading-snug tracking-wide text-gray-700 text-opacity-100">
-									hogehogehoge
-								</p>
-								<img
-									loading="lazy"
-									src="/logo.png"
-									alt="Logspot"
-									className="h-20 w-20"
-								/>
+
+								<img loading="lazy" src="/works.png" alt="Logspot" />
 							</div>
 						</div>
 
@@ -38,18 +31,11 @@ const TimeLine = () => {
 								<h1 className="mx-auto text-white font-semibold text-lg">2</h1>
 							</div>
 							<div className="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
-								<h3 className="mb-3 font-bold text-gray-700 text-xl">
+								<h3 className="mb-3 font-bold text-gray-700 text-2xl">
 									チャレンジしたい問題を選択
 								</h3>
-								<p className="text-sm font-medium leading-snug tracking-wide text-gray-700 text-opacity-100">
-									hogehogehoge
-								</p>
-								<img
-									loading="lazy"
-									src="/logo.png"
-									alt="Logspot"
-									className="h-20 w-20"
-								/>
+
+								<img loading="lazy" src="/chapters.png" alt="Logspot" />
 							</div>
 						</div>
 
@@ -59,18 +45,11 @@ const TimeLine = () => {
 								<h1 className="mx-auto font-semibold text-lg text-white">3</h1>
 							</div>
 							<div className="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
-								<h3 className="mb-3 font-bold text-gray-800 text-xl">
+								<h3 className="mb-3 font-bold text-gray-700 text-2xl">
 									エディタにコードを書く
 								</h3>
-								<p className="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">
-									hogehogehoge
-								</p>
-								<img
-									loading="lazy"
-									src="/logo.png"
-									alt="Logspot"
-									className="h-20 w-20"
-								/>
+
+								<img loading="lazy" src="/practices.png" alt="Logspot" />
 							</div>
 						</div>
 						<div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
@@ -79,18 +58,11 @@ const TimeLine = () => {
 								<h1 className="mx-auto text-white font-semibold text-lg">4</h1>
 							</div>
 							<div className="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
-								<h3 className="mb-3 font-bold text-gray-700 text-xl">
-									自分で書いたコードを判定する
+								<h3 className="mb-3 font-bold text-gray-700 text-2xl">
+									書いたコードを判定
 								</h3>
-								<p className="text-sm font-medium leading-snug tracking-wide text-gray-700 text-opacity-100">
-									hogehogehoge
-								</p>
-								<img
-									loading="lazy"
-									src="/logo.png"
-									alt="Logspot"
-									className="h-20 w-20"
-								/>
+
+								<img loading="lazy" src="/comparison.png" />
 							</div>
 						</div>
 					</div>

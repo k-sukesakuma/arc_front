@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React from 'react';
 import Aside from '@/app/components/Aside';
 import ChaptersHeader from '@/app/components/ChaptersHeader';
 import ChapterCards from '@/app/components/ChapterCards';
