@@ -52,7 +52,11 @@ const page = () => {
 					</div>
 					<Providers>
 						<Flex justifyContent="space-around" className="mx-5">
-							<Box className="bg-white rounded" height="520px" width="622px">
+							<Box
+								className="bg-white rounded shadow-md"
+								height="520px"
+								width="622px"
+							>
 								<Tabs>
 									<TabList
 										style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -78,7 +82,11 @@ const page = () => {
 								</Tabs>
 							</Box>
 
-							<Box className="bg-white rounded" height="520px" width="622px">
+							<Box
+								className="bg-white rounded shadow-md"
+								height="520px"
+								width="622px"
+							>
 								<Tabs index={tabIndex} onChange={(index) => setTabIndex(index)}>
 									<TabList>
 										<Tab className="font-bold">DB</Tab>
