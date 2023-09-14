@@ -1,14 +1,30 @@
 'use client';
 import React, { useState } from 'react';
 import Aside from '@/app/components/Aside';
+import { Box, Grid, Tab } from '@mui/material';
+import { TabContext } from '@mui/lab';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import CodeEditor from '@/app/components/CodeEditor';
 
 const page = () => {
+	const [value, setValue] = useState('1');
+
+	const handleChange = (event: any, newValue: any) => {
+		setValue(newValue);
+	};
+
+	const [leftValue, setLeftValue] = useState('1');
+
+	const leftHandleChange = (event: any, newValue: any) => {
+		setLeftValue(newValue);
+	};
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
 				<Aside />
-				<section className="flex-grow">
-					<div className="shadow-md px-6 py-4 my-5 mx-10 rounded-lg bg-white">
+				<section className="flex-grow mx-10">
+					<div className="shadow-md px-6 py-4 my-5 rounded-lg bg-white">
 						<div className="text-xl font-bold text-gray-900 px-3 mb-2">
 							allメソッドによるデータの取得
 						</div>
@@ -19,6 +35,50 @@ const page = () => {
 							</div>
 						</div>
 					</div>
+					<Grid container spacing={2}>
+						<Grid item xs={6}>
+							<div className="shadow-md rounded-lg bg-white">
+								<TabContext value={leftValue}>
+									<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+										<TabList
+											onChange={leftHandleChange}
+											aria-label="lab API tabs example"
+										>
+											<Tab label="エディタ" value="1" />
+										</TabList>
+									</Box>
+									<TabPanel value="1">
+										<CodeEditor />
+									</TabPanel>
+								</TabContext>
+							</div>
+						</Grid>
+						<Grid item xs={6}>
+							<div className="shadow-md rounded-lg bg-white">
+								<TabContext value={value}>
+									<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+										<TabList
+											onChange={handleChange}
+											aria-label="lab API tabs example"
+										>
+											<Tab label="DB" value="1" />
+											<Tab label="ER図" value="2" />
+											<Tab label="実行結果" value="3" />
+										</TabList>
+									</Box>
+									<TabPanel value="1">Item One</TabPanel>
+									<TabPanel value="2">Item Two</TabPanel>
+									<TabPanel value="3">Item Three</TabPanel>
+								</TabContext>
+							</div>
+						</Grid>
+						<Grid item xs={1.5}>
+							<div className="shadow-md rounded-lg bg-white">アイウエオ</div>
+						</Grid>
+						<Grid item xs={1.5}>
+							<div className="shadow-md rounded-lg bg-white">アイウエオ</div>
+						</Grid>
+					</Grid>
 				</section>
 			</main>
 		</div>

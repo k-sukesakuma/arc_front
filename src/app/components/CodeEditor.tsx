@@ -12,7 +12,7 @@ export default function CodeEditor() {
 	};
 	return (
 		<Editor
-			theme="vs-light"
+			theme="vs-dark"
 			height="450px"
 			defaultLanguage="ruby"
 			defaultValue="Welcome to Arc👋"
