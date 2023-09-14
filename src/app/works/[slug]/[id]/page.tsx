@@ -5,7 +5,8 @@ import { Box, Grid, Tab } from '@mui/material';
 import { TabContext } from '@mui/lab';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import SyncIcon from '@mui/icons-material/Sync';
 import CodeEditor from '@/app/components/CodeEditor';
 
@@ -47,19 +48,19 @@ const Page = () => {
 										<TabList
 											onChange={leftHandleChange}
 											aria-label="lab API tabs example"
-											style={{
-												display: 'flex',
-												justifyContent: 'space-between',
-											}}
 										>
 											<Tab label="エディタ" value="1" />
-											<div className="mt-3 ml-5 ">
-												<SyncIcon
-													onClick={(handleChange) => setValue('3')}
-													style={{
-														color: 'gray',
-													}}
-												/>
+											<div className="mt-1.5 ml-5 ">
+												<Tooltip title="実行する" placement="right-start">
+													<IconButton aria-label="delete">
+														<SyncIcon
+															onClick={(handleChange) => setValue('3')}
+															style={{
+																color: 'gray',
+															}}
+														/>
+													</IconButton>
+												</Tooltip>
 											</div>
 										</TabList>
 									</Box>
