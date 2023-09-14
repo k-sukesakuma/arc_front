@@ -3,33 +3,6 @@ import React, { useState } from 'react';
 import Aside from '@/app/components/Aside';
 import CodeEditor from '@/app/components/CodeEditor';
 import ChaptersHeader from '@/app/components/ChaptersHeader';
-import { Providers } from '@/app/providers';
-import {
-	Tabs,
-	TabList,
-	TabPanels,
-	Tab,
-	TabPanel,
-	Table,
-	Thead,
-	Tbody,
-	Tr,
-	Th,
-	Td,
-	TableContainer,
-	Flex,
-	Box,
-	Button,
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalFooter,
-	ModalBody,
-	ModalCloseButton,
-	useDisclosure,
-} from '@chakra-ui/react';
-import { RepeatIcon } from '@chakra-ui/icons';
 
 const page = () => {
 	return (
