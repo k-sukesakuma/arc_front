@@ -16,7 +16,7 @@ export default function Aside() {
 						className="h-10 w-15"
 					/>
 				</a>
-				<Tooltip title="問題集一覧" placement="right-start">
+				<Tooltip title="問題集一覧" placement="bottom">
 					<IconButton aria-label="delete">
 						<AppsIcon />
 					</IconButton>
