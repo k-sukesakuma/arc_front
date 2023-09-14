@@ -32,8 +32,6 @@ import {
 import { RepeatIcon } from '@chakra-ui/icons';
 
 const page = () => {
-	const [tabIndex, setTabIndex] = useState(0);
-	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
