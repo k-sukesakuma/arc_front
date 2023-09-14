@@ -10,6 +10,8 @@ export default function CodeEditor() {
 		minimap: { enabled: false },
 		scrollbar: { verticalScrollbarSize: 0 },
 		renderLineHighlight: 'line',
+		lineHeight: 25,
+		fontSize: 16,
 	};
 	return (
 		<Editor
