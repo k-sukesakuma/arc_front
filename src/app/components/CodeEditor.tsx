@@ -19,7 +19,7 @@ export default function CodeEditor() {
 			height="450px"
 			defaultLanguage="ruby"
 			defaultValue="Welcome to Arc👋"
-			loading={<CircularProgress color="inherit" />}
+			loading={<CircularProgress style={{ color: 'grey' }} />}
 			className=" overflow-hidden"
 			options={options}
 		/>
