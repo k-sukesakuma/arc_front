@@ -1,40 +1,23 @@
 import { useEffect, useRef } from 'react';
-import { basicSetup } from 'codemirror';
-import { EditorState } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
-import { javascript } from '@codemirror/lang-javascript';
-import { oneDark } from '@codemirror/theme-one-dark';
+import Editor from '@monaco-editor/react';
+import * as monaco from 'monaco-editor';
+import * as monacoEditor from 'monaco-editor';
 
 export default function CodeEditor() {
-	const editorRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!editorRef.current) return;
-
-		const state = EditorState.create({
-			doc: 'Welcome to Arc👋',
-			extensions: [
-				basicSetup,
-				javascript(),
-				oneDark,
-				EditorView.baseTheme({
-					'&': {
-						height: '445px',
-						width: '590px',
-					},
-				}),
-			],
-		});
-
-		const view = new EditorView({
-			state,
-			parent: editorRef.current,
-		});
-
-		return () => {
-			view.destroy();
-		};
-	}, []);
-
-	return <div ref={editorRef} className="editor" />;
+	const options: monaco.editor.IStandaloneEditorConstructionOptions = {
+		readOnly: false,
+		minimap: { enabled: false },
+		scrollbar: { verticalScrollbarSize: 0 },
+		renderLineHighlight: 'line',
+	};
+	return (
+		<Editor
+			theme="vs-light"
+			height="450px"
+			defaultLanguage="ruby"
+			defaultValue="Welcome to Arc👋"
+			className=" overflow-hidden"
+			options={options}
+		/>
+	);
 }
