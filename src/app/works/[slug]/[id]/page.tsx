@@ -1,8 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 import Aside from '@/app/components/Aside';
-import CodeEditor from '@/app/components/CodeEditor';
-import ChaptersHeader from '@/app/components/ChaptersHeader';
 
 const page = () => {
 	return (
