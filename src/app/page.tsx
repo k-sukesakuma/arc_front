@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import Header from './components/Header';
-import LoginButton from './components/LoginButton';
 import TimeLine from './components/TimeLine';
 import Footer from './components/Footer';
+import LoginButton from './components/LoginButton';
 
 export default async function Home() {
 	return (
@@ -16,6 +16,7 @@ export default async function Home() {
 			</main>
 			<LoginButton />
 			<TimeLine />
+
 			<Footer />
 		</div>
 	);

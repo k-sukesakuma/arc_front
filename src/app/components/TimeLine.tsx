@@ -2,7 +2,7 @@ import React from 'react';
 
 const TimeLine = () => {
 	return (
-		<section className="relative mx-auto max-w-7xl  sm:px-6  overflow-hidden">
+		<section className="relative mx-auto max-w-6xl sm:px-6  overflow-hidden mt-10">
 			<article className="md:flex">
 				<div className="container mx-auto w-full h-full">
 					<div className="relative wrap overflow-hidden h-full">

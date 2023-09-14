@@ -16,7 +16,7 @@ export default function CodeEditor() {
 	return (
 		<Editor
 			theme="vs-light"
-			height="450px"
+			height="440px"
 			defaultLanguage="ruby"
 			defaultValue="Welcome to Arc👋"
 			loading={<CircularProgress style={{ color: 'grey' }} />}
