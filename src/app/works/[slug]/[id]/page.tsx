@@ -128,7 +128,7 @@ const Page = () => {
 	const handleClose = () => setOpen(false);
 	const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 		color: theme.palette.getContrastText(grey[50]),
-		backgroundColor: blueGrey[100],
+		backgroundColor: grey[50],
 		'&:hover': {
 			backgroundColor: blueGrey[100],
 		},
