@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.1.5",
@@ -14,6 +15,8 @@
     "@codemirror/lang-javascript": "^6.2.1",
     "@codemirror/theme-one-dark": "^6.1.2",
     "@emotion/react": "^11.11.1",
+    "@monaco-editor/react": "^4.5.2",
+    "@next/bundle-analyzer": "^13.4.19",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
