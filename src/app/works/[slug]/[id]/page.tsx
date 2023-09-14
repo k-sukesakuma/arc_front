@@ -7,7 +7,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import CodeEditor from '@/app/components/CodeEditor';
 
-const page = () => {
+const Page = () => {
 	const [value, setValue] = useState('1');
 
 	const handleChange = (event: any, newValue: any) => {
@@ -85,4 +85,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;
