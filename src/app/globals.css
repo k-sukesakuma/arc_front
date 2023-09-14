@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Button {
+	color: black;
+}
+
+.MuiOutlinedInput-root.Mui-focusVisible {
+	color: black;
+}
+
+.MuiOutlinedInput-root.Mui-focused {
+	color: red;
+}
+
+.MuiOutlinedInput-root.MuiButton-textPrimary {
+	color: red;
+}
