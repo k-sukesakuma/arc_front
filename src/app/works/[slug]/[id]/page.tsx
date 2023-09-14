@@ -5,6 +5,9 @@ import { Box, Grid, Tab } from '@mui/material';
 import { TabContext } from '@mui/lab';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import SyncIcon from '@mui/icons-material/Sync';
 import CodeEditor from '@/app/components/CodeEditor';
 
 const Page = () => {
@@ -19,6 +22,8 @@ const Page = () => {
 	const leftHandleChange = (event: any, newValue: any) => {
 		setLeftValue(newValue);
 	};
+
+	const [isFocused, setIsFocused] = useState(false);
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
@@ -45,6 +50,18 @@ const Page = () => {
 											aria-label="lab API tabs example"
 										>
 											<Tab label="エディタ" value="1" />
+											<div className="mt-1.5 ml-5 ">
+												<Tooltip title="実行する" placement="right-start">
+													<IconButton aria-label="delete">
+														<SyncIcon
+															onClick={(handleChange) => setValue('3')}
+															style={{
+																color: 'gray',
+															}}
+														/>
+													</IconButton>
+												</Tooltip>
+											</div>
 										</TabList>
 									</Box>
 									<TabPanel value="1">
