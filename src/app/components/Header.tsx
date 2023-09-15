@@ -11,7 +11,9 @@ const Header = () => {
 						alt="Logspot"
 						className="h-20 w-20"
 					/>
-					<h1 className="text-4xl font-bold text-slate-700 sm:text-5xl">Arc</h1>
+					<h1 className="text-4xl font-bold text-slate-700 sm:text-5xl tracking-wide">
+						Arc
+					</h1>
 				</div>
 				<p className="mt-4 font-bold text-base leading-7 text-slate-600 ">
 					Arcは環境構築不要、Ruby on RailsのO/Rマッパーである
