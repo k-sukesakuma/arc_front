@@ -26,6 +26,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
+import axios from 'axios';
+import useSWR from 'swr';
+
 interface Column {
 	id: 'name' | 'code' | 'population' | 'size' | 'density';
 	label: string;
@@ -109,6 +112,13 @@ const style = {
 };
 
 const Page = () => {
+	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+	const { data, error, isLoading } = useSWR(
+		'http://localhost:3001/api/v1/statics',
+		fetcher
+	);
+	console.log(data);
+
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
