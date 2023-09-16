@@ -225,6 +225,17 @@ const Page = () => {
 		fetcher
 	);
 
+	useEffect(() => {
+		if (answersConfirmError) {
+			console.log(answersConfirmError);
+			console.log('エラー');
+		}
+		if (answersConfirmData) {
+			console.log(answersConfirmData.result);
+			console.log('データが取得できた');
+		}
+	}, [answersConfirmData, answersConfirmError]);
+
 	// ------------------------------------------------------------------------
 
 	const [page, setPage] = React.useState(0);
@@ -441,7 +452,9 @@ const Page = () => {
 					<Typography id="modal-modal-title" variant="h6" component="h2">
 						答え
 					</Typography>
-					<Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
+					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+						{answersConfirmData.result}
+					</Typography>
 				</Box>
 			</Modal>
 		</div>
