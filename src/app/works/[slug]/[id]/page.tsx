@@ -449,11 +449,18 @@ const Page = () => {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<Typography id="modal-modal-title" variant="h6" component="h2">
+					<Typography
+						id="modal-modal-title"
+						variant="h6"
+						component="h2"
+						className="font-semibold"
+					>
 						答え
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-						{answersConfirmData.result}
+						<div className="bg-slate-900 text-white pt-8 pb-8 pl-3 pr-8  rounded-sm">
+							<p className="mt-2 text-xl text-slate-200">User.all</p>
+						</div>
 					</Typography>
 				</Box>
 			</Modal>
