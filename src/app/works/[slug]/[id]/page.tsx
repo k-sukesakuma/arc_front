@@ -31,6 +31,8 @@ import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 import useSWR from 'swr';
 
+import { useParams } from 'next/navigation';
+
 interface Column {
 	id: 'name' | 'code' | 'population' | 'size' | 'density';
 	label: string;
@@ -235,6 +237,24 @@ const Page = () => {
 			console.log('データが取得できた');
 		}
 	}, [answersConfirmData, answersConfirmError]);
+
+	// ------------------------------------------------------------------------
+
+	// ------------------------------次の問題に遷移------------------------------
+
+	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+	const params = useParams();
+	const slug = params.slug;
+	const id = params.id;
+
+	console.log(params);
+	console.log(id);
+	console.log(slug);
+
+	useEffect(() => {
+		setCurrentQuestionIndex(Number(id));
+	}, [id]);
 
 	// ------------------------------------------------------------------------
 
