@@ -438,7 +438,7 @@ const Page = () => {
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						{modalContent
 							? 'おめでとうございます！次の問題に挑戦してみましょう！'
-							: '不正解です、、！！もう一度自分のコードを確認してみましょう。'}
+							: '不正解です、、！！もう一度自分のコードに間違いがないか確認してみましょう。'}
 					</Typography>
 				</Box>
 			</Modal>
