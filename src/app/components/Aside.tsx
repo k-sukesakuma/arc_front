@@ -29,14 +29,17 @@ export default function Aside() {
 				<Tooltip title="ログイン" placement="top">
 					<IconButton
 						aria-label="delete"
-						onClick={() => signIn('google', {}, {})}
+						onClick={() => signIn('google', { callbackUrl: '/works' })}
 					>
 						<LogoutIcon />
 					</IconButton>
 				</Tooltip>
 			) : (
 				<Tooltip title="ログアウト" placement="top">
-					<IconButton aria-label="delete" onClick={() => signOut()}>
+					<IconButton
+						aria-label="delete"
+						onClick={() => signOut({ callbackUrl: '/' })}
+					>
 						<LogoutIcon />
 					</IconButton>
 				</Tooltip>
