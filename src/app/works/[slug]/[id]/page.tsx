@@ -346,34 +346,36 @@ const Page = () => {
 									<TabPanel value="1">Item One</TabPanel>
 									<TabPanel value="2">Item Two</TabPanel>
 									<TabPanel value="3">
-										{' '}
-										<Paper sx={{ width: '100%' }}>
-											<TableContainer sx={{ maxHeight: 440 }}>
-												<Table stickyHeader aria-label="sticky table">
-													<TableHead>
-														{columns.map((column) => (
-															<TableCell
-																key={column.id}
-																align={column.align}
-																style={{ minWidth: column.minWidth }}
-															>
-																{column.label}
-															</TableCell>
-														))}
-													</TableHead>
-													<TableBody>
-														{executionsData &&
-															executionsData
+										{executionsData && 'result' in executionsData ? (
+											<div className="height">{executionsData.result}</div>
+										) : (
+											<Paper sx={{ width: '100%' }}>
+												<TableContainer sx={{ height: 440 }}>
+													<Table stickyHeader aria-label="sticky table">
+														<TableHead>
+															{executionsData &&
+																(Array.isArray(executionsData)
+																	? executionsData.length > 0
+																	: Object.keys(executionsData).length > 0) &&
+																Object.keys(
+																	Array.isArray(executionsData)
+																		? executionsData[0]
+																		: executionsData
+																).map((key) => (
+																	<TableCell key={key}>{key}</TableCell>
+																))}
+														</TableHead>
+														<TableBody>
+															{(Array.isArray(executionsData)
+																? executionsData
+																: [executionsData]
+															)
 																.slice(
 																	page * rowsPerPage,
 																	page * rowsPerPage + rowsPerPage
 																)
-																.map(
-																	(row: {
-																		email: string;
-																		name: string;
-																		password: string;
-																	}) => {
+																.map((row) => {
+																	if (row && typeof row === 'object') {
 																		return (
 																			<TableRow
 																				hover
@@ -382,7 +384,7 @@ const Page = () => {
 																				key={row.name}
 																			>
 																				{Object.keys(row).map((key) => {
-																					const value = (row as any)[key];
+																					const value = row[key];
 																					return (
 																						<TableCell key={key}>
 																							{value}
@@ -392,11 +394,12 @@ const Page = () => {
 																			</TableRow>
 																		);
 																	}
-																)}
-													</TableBody>
-												</Table>
-											</TableContainer>
-										</Paper>
+																})}
+														</TableBody>
+													</Table>
+												</TableContainer>
+											</Paper>
+										)}
 									</TabPanel>
 								</TabContext>
 							</div>
