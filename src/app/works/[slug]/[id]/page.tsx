@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Aside from '@/app/components/Aside';
 import { Box, Grid, Tab } from '@mui/material';
 import { TabContext } from '@mui/lab';
@@ -15,6 +15,8 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 import { blueGrey } from '@mui/material/colors';
 import CodeEditor from '@/app/components/CodeEditor';
+import Editor from '@monaco-editor/react';
+import * as monaco from 'monaco-editor';
 
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -111,14 +113,67 @@ const style = {
 	p: 4,
 };
 
+interface ExecutionDataType {
+	id: number;
+	name: string;
+	email: string;
+	password: string;
+}
+
 const Page = () => {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-	const { data, error, isLoading } = useSWR(
-		'http://localhost:3001/api/v1/statics',
+	const {
+		data: staticsData,
+		error: staticsError,
+		isLoading,
+	} = useSWR('http://localhost:3001/api/v1/statics', fetcher);
+	console.log(staticsData);
+
+	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);
+	const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+	const [code, setCode] = useState('');
+
+	const { data: executionsData, error: executionsError } = useSWR(
+		code
+			? `http://localhost:3001/api/v1/executions/execute?active_record_string=${encodeURIComponent(
+					code
+			  )}`
+			: null,
 		fetcher
 	);
-	console.log(data);
 
+	useEffect(() => {
+		if (executionsError) {
+			console.log('エラー');
+		}
+		if (executionsData) {
+			console.log(executionsData);
+			console.log('データが取得できた');
+		}
+	}, [executionsData, executionsError]);
+	const handleEditorDidMount = (
+		editor: monaco.editor.IStandaloneCodeEditor | null
+	) => {
+		if (editor && editor.getModel()) {
+			editorRef.current = editor;
+			editor.onDidChangeModelContent((event) => {
+				const previousLine = event.changes[0].range.startLineNumber - 1;
+				const currentLine = event.changes[0].range.endLineNumber - 1;
+			});
+		}
+	};
+
+	const executeCode = () => {
+		if (editorRef.current) {
+			const code = editorRef.current.getValue({
+				preserveBOM: false,
+				lineEnding: '\n',
+			});
+			console.log(code);
+			console.log(code.indexOf('\n') !== -1);
+			setCode(code);
+		}
+	};
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -172,6 +227,11 @@ const Page = () => {
 							</div>
 						</div>
 					</div>
+					{executionData.map((value) => (
+						<li className="p-4">
+							<button className="font-bold">{value.name}</button>
+						</li>
+					))}
 					<Grid container spacing={2}>
 						<Grid item xs={6}>
 							<div className="shadow-md rounded-lg bg-white">
@@ -186,7 +246,10 @@ const Page = () => {
 												<Tooltip title="実行する" placement="right-start">
 													<IconButton aria-label="delete">
 														<SyncIcon
-															onClick={(handleChange) => setValue('3')}
+															onClick={(event) => {
+																executeCode();
+																setValue('3');
+															}}
 															style={{
 																color: 'gray',
 															}}
@@ -197,7 +260,7 @@ const Page = () => {
 										</TabList>
 									</Box>
 									<TabPanel value="1">
-										<CodeEditor />
+										<CodeEditor onMount={handleEditorDidMount} />
 									</TabPanel>
 								</TabContext>
 							</div>
@@ -234,36 +297,37 @@ const Page = () => {
 														))}
 													</TableHead>
 													<TableBody>
-														{rows
-															.slice(
-																page * rowsPerPage,
-																page * rowsPerPage + rowsPerPage
-															)
-															.map((row) => {
-																return (
-																	<TableRow
-																		hover
-																		role="checkbox"
-																		tabIndex={-1}
-																		key={row.code}
-																	>
-																		{columns.map((column) => {
-																			const value = row[column.id];
-																			return (
-																				<TableCell
-																					key={column.id}
-																					align={column.align}
-																				>
-																					{column.format &&
-																					typeof value === 'number'
-																						? column.format(value)
-																						: value}
-																				</TableCell>
-																			);
-																		})}
-																	</TableRow>
-																);
-															})}
+														{executionsData &&
+															executionsData
+																.slice(
+																	page * rowsPerPage,
+																	page * rowsPerPage + rowsPerPage
+																)
+																.map(
+																	(row: {
+																		email: string;
+																		name: string;
+																		password: string;
+																	}) => {
+																		return (
+																			<TableRow
+																				hover
+																				role="checkbox"
+																				tabIndex={-1}
+																				key={row.name}
+																			>
+																				{Object.keys(row).map((key) => {
+																					const value = (row as any)[key];
+																					return (
+																						<TableCell key={key}>
+																							{value}
+																						</TableCell>
+																					);
+																				})}
+																			</TableRow>
+																		);
+																	}
+																)}
 													</TableBody>
 												</Table>
 											</TableContainer>
