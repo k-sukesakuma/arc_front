@@ -459,7 +459,9 @@ const Page = () => {
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						<div className="bg-slate-900 text-white pt-8 pb-8 pl-3 pr-8  rounded-sm">
-							<p className="mt-2 text-xl text-slate-200">User.all</p>
+							<p className="mt-2 text-xl text-slate-200">
+								{answersConfirmData && answersConfirmData.result}
+							</p>
 						</div>
 					</Typography>
 				</Box>
