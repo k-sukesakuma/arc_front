@@ -24,7 +24,7 @@ export default function Aside() {
 			</div>
 
 			<div>
-				<Tooltip title="ログアウト" placement="top">
+				<Tooltip title="ログイン" placement="top">
 					<IconButton aria-label="delete">
 						<LogoutIcon />
 					</IconButton>

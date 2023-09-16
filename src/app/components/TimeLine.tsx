@@ -2,7 +2,7 @@ import React from 'react';
 
 const TimeLine = () => {
 	return (
-		<section className="relative mx-auto max-w-6xl sm:px-6  overflow-hidden mt-10">
+		<section className="relative mx-auto max-w-6xl sm:px-6  overflow-hidden mt-20">
 			<article className="md:flex">
 				<div className="container mx-auto w-full h-full">
 					<div className="relative wrap overflow-hidden h-full">
@@ -46,7 +46,7 @@ const TimeLine = () => {
 							</div>
 							<div className="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
 								<h3 className="mb-3 font-bold text-gray-700 text-2xl">
-									エディタにコードを書く
+									エディタで問題にチャレンジ
 								</h3>
 
 								<img loading="lazy" src="/practices.png" alt="Logspot" />
