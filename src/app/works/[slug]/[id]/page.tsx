@@ -174,6 +174,45 @@ const Page = () => {
 			setCode(code);
 		}
 	};
+
+	// --------------------------答え合わせ--------------------------------------
+	const [answer, setAnswer] = useState('');
+	const [modalContent, setModalContent] = useState(false);
+	const executeAnswer = () => {
+		if (editorRef.current) {
+			const code = editorRef.current.getValue({
+				preserveBOM: false,
+				lineEnding: '\n',
+			});
+			console.log(code);
+			console.log(code.indexOf('\n') !== -1);
+			setAnswer(code);
+		}
+	};
+
+	const { data: answersData, error: answersError } = useSWR(
+		answer
+			? `http://localhost:3001/api/v1/answers/check?user_answer=${encodeURIComponent(
+					answer
+			  )}`
+			: null,
+		fetcher
+	);
+
+	useEffect(() => {
+		if (executionsError) {
+			console.log(executionsError);
+			console.log('エラー');
+		}
+		if (answersData) {
+			console.log(answersData);
+			console.log('データが取得できた');
+			setModalContent(answersData.result);
+		}
+	}, [answersData, answersError]);
+
+	// --------------------------答え合わせ--------------------------------------
+
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -340,7 +379,10 @@ const Page = () => {
 							<ColorButton
 								variant="contained"
 								startIcon={<TaskAltIcon />}
-								onClick={handleOpen}
+								onClick={(event) => {
+									executeAnswer();
+									handleOpen();
+								}}
 							>
 								答え合わせ
 							</ColorButton>
@@ -365,10 +407,12 @@ const Page = () => {
 			>
 				<Box sx={style}>
 					<Typography id="modal-modal-title" variant="h6" component="h2">
-						Text in a modal
+						{modalContent ? '正解' : '不正解'}
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-						Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+						{modalContent
+							? 'おめでとうございます！次の問題に挑戦してみましょう！'
+							: '不正解です、、！！もう一度自分のコードを確認してみましょう。'}
 					</Typography>
 				</Box>
 			</Modal>
