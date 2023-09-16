@@ -211,7 +211,21 @@ const Page = () => {
 		}
 	}, [answersData, answersError]);
 
-	// --------------------------答え合わせ--------------------------------------
+	// ------------------------------------------------------------------------
+
+	// --------------------------正解を見る--------------------------------------
+
+	const [open2, setOpen2] = useState(false);
+
+	const handleOpen2 = () => setOpen2(true);
+	const handleClose2 = () => setOpen2(false);
+
+	const { data: answersConfirmData, error: answersConfirmError } = useSWR(
+		'http://localhost:3001/api/v1/answers/confirm',
+		fetcher
+	);
+
+	// ------------------------------------------------------------------------
 
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -227,7 +241,8 @@ const Page = () => {
 		setPage(0);
 	};
 
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
+
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -391,7 +406,7 @@ const Page = () => {
 							<ColorButton
 								variant="contained"
 								startIcon={<ManageSearchIcon />}
-								onClick={handleOpen}
+								onClick={handleOpen2}
 							>
 								正解を見る
 							</ColorButton>
@@ -414,6 +429,19 @@ const Page = () => {
 							? 'おめでとうございます！次の問題に挑戦してみましょう！'
 							: '不正解です、、！！もう一度自分のコードを確認してみましょう。'}
 					</Typography>
+				</Box>
+			</Modal>
+			<Modal
+				open={open2}
+				onClose={handleClose2}
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
+			>
+				<Box sx={style}>
+					<Typography id="modal-modal-title" variant="h6" component="h2">
+						答え
+					</Typography>
+					<Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
 				</Box>
 			</Modal>
 		</div>
