@@ -31,6 +31,9 @@ import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 import useSWR from 'swr';
 
+import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+
 interface Column {
 	id: 'name' | 'code' | 'population' | 'size' | 'density';
 	label: string;
@@ -220,21 +223,42 @@ const Page = () => {
 	const handleOpen2 = () => setOpen2(true);
 	const handleClose2 = () => setOpen2(false);
 
-	const { data: answersConfirmData, error: answersConfirmError } = useSWR(
-		'http://localhost:3001/api/v1/answers/confirm',
+	// ------------------------------------------------------------------------
+
+	// ------------------------------次の問題に遷移------------------------------
+
+	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
+
+	const params = useParams();
+	const slug = params.slug;
+	const id = params.id;
+
+	console.log(params);
+	console.log(id);
+	console.log(slug);
+
+	useEffect(() => {
+		setCurrentQuestionIndex(Number(id));
+	}, [id]);
+
+	const router = useRouter();
+
+	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
+		`http://localhost:3001/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	useEffect(() => {
-		if (answersConfirmError) {
-			console.log(answersConfirmError);
+		if (answerPracticesError) {
+			console.log(answerPracticesError);
 			console.log('エラー');
 		}
-		if (answersConfirmData) {
-			console.log(answersConfirmData.result);
+		if (answerPracticesData) {
+			console.log('問題');
+			console.log(answerPracticesData);
 			console.log('データが取得できた');
 		}
-	}, [answersConfirmData, answersConfirmError]);
+	}, [answerPracticesData, answerPracticesError]);
 
 	// ------------------------------------------------------------------------
 
@@ -283,12 +307,14 @@ const Page = () => {
 				<section className="flex-grow mx-10">
 					<div className="shadow-md px-6 py-4 my-5 rounded-lg bg-white">
 						<div className="text-xl font-bold text-gray-900 px-3 mb-2">
-							allメソッドによるデータの取得
+							{answerPracticesData &&
+								answerPracticesData[currentQuestionIndex].title}
 						</div>
 						<hr className="mt-1 mb-2 rounded-lg" />
 						<div>
 							<div className="px-4 py-3 font-semibold rounded-lg">
-								allメソッドを使用して、usersテーブルのレコードを全て取得してください。
+								{answerPracticesData &&
+									answerPracticesData[currentQuestionIndex].question}
 							</div>
 						</div>
 					</div>
@@ -442,6 +468,21 @@ const Page = () => {
 						{modalContent
 							? 'おめでとうございます！次の問題に挑戦してみましょう！'
 							: '不正解です、、！！もう一度自分のコードに間違いがないか確認してみましょう。'}
+						<Button
+							onClick={() => {
+								if (currentQuestionIndex < answerPracticesData.length - 1) {
+									let nextIndex = currentQuestionIndex + 1;
+									setCurrentQuestionIndex(nextIndex);
+									router.push(
+										`http://localhost:3000/works/${slug}/${nextIndex}`
+									);
+								} else {
+									router.push('http://localhost:3000/works');
+								}
+							}}
+						>
+							次の問題へ
+						</Button>
 					</Typography>
 				</Box>
 			</Modal>
@@ -461,9 +502,11 @@ const Page = () => {
 						答え
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-						<div className="bg-slate-900 text-white pt-8 pb-8 pl-3 pr-8  rounded-sm">
+						<div className="bg-slate-700 text-white pt-8 pb-8 pl-3 pr-8  rounded-md">
 							<p className="mt-2 text-xl text-slate-200">
-								{answersConfirmData && answersConfirmData.result}
+								{answerPracticesData &&
+									typeof id === 'string' &&
+									answerPracticesData[id].answer}
 							</p>
 						</div>
 					</Typography>

@@ -5,19 +5,19 @@ import Header from './components/Header';
 import TimeLine from './components/TimeLine';
 import Footer from './components/Footer';
 import LoginButton from './components/LoginButton';
+import Aside from './components/Aside';
 
 export default async function Home() {
 	return (
 		<div>
-			<main className="relative">
-				<section className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 overflow-hidden">
+			<main className="flex bg-slate-100 relative">
+				<Aside />
+				<section className="flex-grow">
 					<Header />
+					<TimeLine />
+					<Footer />
 				</section>
 			</main>
-			<LoginButton />
-			<TimeLine />
-
-			<Footer />
 		</div>
 	);
 }
