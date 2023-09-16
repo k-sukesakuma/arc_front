@@ -177,6 +177,7 @@ const Page = () => {
 
 	// --------------------------答え合わせ--------------------------------------
 	const [answer, setAnswer] = useState('');
+	const [modalContent, setModalContent] = useState(false);
 	const executeAnswer = () => {
 		if (editorRef.current) {
 			const code = editorRef.current.getValue({
@@ -200,11 +201,13 @@ const Page = () => {
 
 	useEffect(() => {
 		if (executionsError) {
+			console.log(executionsError);
 			console.log('エラー');
 		}
 		if (answersData) {
 			console.log(answersData);
 			console.log('データが取得できた');
+			setModalContent(answersData.result);
 		}
 	}, [answersData, answersError]);
 
@@ -404,10 +407,12 @@ const Page = () => {
 			>
 				<Box sx={style}>
 					<Typography id="modal-modal-title" variant="h6" component="h2">
-						Text in a modal
+						{modalContent ? '正解' : '不正解'}
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-						Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+						{modalContent
+							? 'おめでとうございます！次の問題に挑戦してみましょう！'
+							: '不正解です、、！！もう一度自分のコードを確認してみましょう。'}
 					</Typography>
 				</Box>
 			</Modal>
