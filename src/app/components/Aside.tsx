@@ -65,7 +65,7 @@ export default function Aside() {
 			}
 		}
 		setPrevStatus(status); // ステータスの更新
-	}, [status, prevStatus, location]);
+	}, [status, prevStatus]);
 
 	return (
 		<div>
