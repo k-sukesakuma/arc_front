@@ -7,7 +7,6 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import SyncIcon from '@mui/icons-material/Sync';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import { styled } from '@mui/material/styles';
@@ -15,7 +14,6 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 import { blueGrey } from '@mui/material/colors';
 import CodeEditor from '@/app/components/CodeEditor';
-import Editor from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
 
 import Typography from '@mui/material/Typography';
@@ -35,6 +33,9 @@ import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface Column {
 	id: 'name' | 'code' | 'population' | 'size' | 'density';
@@ -201,24 +202,26 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`http://localhost:3001/api/v1/practices?slug=${slug}`,
+		apiUrl + `/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? `http://localhost:3001/api/v1/executions?active_record_string=${encodeURIComponent(
-					code
-			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			? apiUrl +
+					`/api/v1/executions?active_record_string=${encodeURIComponent(
+						code
+					)}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? `http://localhost:3001/api/v1/executions/check?user_answer=${encodeURIComponent(
-					answer
-			  )}&practice_id=${answerPracticesData[currentQuestionIndex].id}`
+			? apiUrl +
+					`/api/v1/executions/check?user_answer=${encodeURIComponent(
+						answer
+					)}&practice_id=${answerPracticesData[currentQuestionIndex].id}`
 			: null,
 		fetcher
 	);
@@ -478,12 +481,10 @@ const Page = () => {
 									console.log('slug');
 									console.log(slug);
 									handleClose();
-									router.push(
-										`http://localhost:3000/works/${slug}/${nextIndex + 1}`
-									);
+									router.push(`/works/${slug}/${nextIndex + 1}`);
 								} else {
 									handleClose();
-									router.push('http://localhost:3000/works');
+									router.push('/works');
 								}
 							}}
 						>
