@@ -10,10 +10,18 @@
 	color: black;
 }
 
-.MuiOutlinedInput-root.Mui-focused {
-	color: red;
+@keyframes slide-bottom {
+	from {
+		transform: translateY(100px);
+	}
+	to {
+		transform: translateY(0);
+	}
 }
 
-.MuiOutlinedInput-root.MuiButton-textPrimary {
-	color: red;
+.toast {
+	position: fixed;
+	bottom: 30px;
+	left: 100px;
+	animation: slide-bottom 0.5s, forwards;
 }
