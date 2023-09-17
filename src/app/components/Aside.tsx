@@ -10,6 +10,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Alert from '@mui/material/Alert';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 export default function Aside() {
 	const [showAlert, setShowAlert] = useState(false);
@@ -23,40 +24,39 @@ export default function Aside() {
 	};
 
 	const { data: session, status } = useSession();
-	const storedShowLoginAlert = localStorage.getItem('showLoginAlert');
-	const [showLoginAlert, setShowLoginAlert] = useState(
-		storedShowLoginAlert ? JSON.parse(storedShowLoginAlert) : false
-	);
 
-	const storedShowLogoutAlert = localStorage.getItem('showLogoutAlert');
-	const [showLogoutAlert, setShowLogoutAlert] = useState(
-		storedShowLogoutAlert ? JSON.parse(storedShowLogoutAlert) : false
-	);
-
-	const [prevStatus, setPrevStatus] = useState(
-		localStorage.getItem('status') || 'unauthenticated'
-	);
+	const [showLoginAlert, setShowLoginAlert] = useState(false);
+	const [showLogoutAlert, setShowLogoutAlert] = useState(false);
+	const [prevStatus, setPrevStatus] = useState('unauthenticated');
 	useEffect(() => {
-		localStorage.setItem('showLoginAlert', JSON.stringify(showLoginAlert));
-	}, [showLoginAlert]);
+		if (typeof window !== 'undefined') {
+			const storedShowLoginAlert = localStorage.getItem('showLoginAlert');
+			if (storedShowLoginAlert) {
+				setShowLoginAlert(JSON.parse(storedShowLoginAlert));
+			}
 
-	useEffect(() => {
-		localStorage.setItem('showLogoutAlert', JSON.stringify(showLogoutAlert));
-	}, [showLogoutAlert]);
+			const storedShowLogoutAlert = localStorage.getItem('showLogoutAlert');
+			if (storedShowLogoutAlert) {
+				setShowLogoutAlert(JSON.parse(storedShowLogoutAlert));
+			}
 
-	useEffect(() => {
-		localStorage.setItem('status', status);
-	}, [status]);
+			const storedStatus = localStorage.getItem('status');
+			if (storedStatus) {
+				setPrevStatus(storedStatus);
+			}
+		}
+	}, []);
+	const pathname = usePathname();
 
 	useEffect(() => {
 		if (prevStatus !== undefined && prevStatus !== status) {
-			if (status === 'authenticated') {
+			if (status === 'authenticated' && pathname === '/works') {
 				setShowLoginAlert(true);
 				const timer = setTimeout(() => {
 					setShowLoginAlert(false);
 				}, 5000);
 				return () => clearTimeout(timer);
-			} else {
+			} else if (status !== 'authenticated' && pathname === '/') {
 				setShowLogoutAlert(true);
 				const timer = setTimeout(() => {
 					setShowLogoutAlert(false);
@@ -65,7 +65,7 @@ export default function Aside() {
 			}
 		}
 		setPrevStatus(status); // ステータスの更新
-	}, [status, prevStatus]);
+	}, [status, prevStatus, location]);
 
 	return (
 		<div>
