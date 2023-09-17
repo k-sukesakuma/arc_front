@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Aside from '@/app/components/Aside';
 import { Box, Grid, Tab } from '@mui/material';
 import { TabContext } from '@mui/lab';
@@ -236,7 +237,7 @@ const Page = () => {
 			console.log('データが取得できた');
 			setModalContent(answersData.result);
 		}
-	}, [answersData, answersError]);
+	}, [answersData, executionsError]);
 
 	useEffect(() => {
 		if (executionsError) {
@@ -319,8 +320,8 @@ const Page = () => {
 							</div>
 						</div>
 					</div>
-					{executionData.map((value) => (
-						<li className="p-4">
+					{executionData.map((value, index) => (
+						<li key={index} className="p-4">
 							<button className="font-bold">{value.name}</button>
 						</li>
 					))}
@@ -372,7 +373,7 @@ const Page = () => {
 									</Box>
 									<TabPanel value="1">Item One</TabPanel>
 									<TabPanel value="2" sx={{ height: 488 }}>
-										<img loading="lazy" src="/db.png" alt="Logspot" />
+										<Image src="/db.png" alt="db" />
 									</TabPanel>
 									<TabPanel value="3">
 										{executionsData && 'result' in executionsData ? (
