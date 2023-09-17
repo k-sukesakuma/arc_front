@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const TimeLine = () => {
 	return (
@@ -21,7 +22,12 @@ const TimeLine = () => {
 									問題集を選択
 								</h3>
 
-								<img loading="lazy" src="/works.png" alt="Logspot" />
+								<Image
+									src="/works.png"
+									alt="Logspot"
+									width={500}
+									height={300}
+								/>
 							</div>
 						</div>
 
@@ -35,7 +41,12 @@ const TimeLine = () => {
 									チャレンジしたい問題を選択
 								</h3>
 
-								<img loading="lazy" src="/chapters.png" alt="Logspot" />
+								<Image
+									src="/chapters.png"
+									alt="Logspot"
+									width={500}
+									height={300}
+								/>
 							</div>
 						</div>
 
@@ -49,7 +60,12 @@ const TimeLine = () => {
 									エディタで問題にチャレンジ
 								</h3>
 
-								<img loading="lazy" src="/practices.png" alt="Logspot" />
+								<Image
+									src="/practices.png"
+									alt="Logspot"
+									width={500}
+									height={300}
+								/>
 							</div>
 						</div>
 						<div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
@@ -62,7 +78,12 @@ const TimeLine = () => {
 									書いたコードを判定
 								</h3>
 
-								<img loading="lazy" src="/comparison.png" />
+								<Image
+									src="/comparison.png"
+									alt="Logspot"
+									width={500}
+									height={300}
+								/>
 							</div>
 						</div>
 					</div>
