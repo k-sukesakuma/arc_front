@@ -34,6 +34,8 @@ import useSWR from 'swr';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+
 interface Column {
 	id: 'name' | 'code' | 'population' | 'size' | 'density';
 	label: string;
@@ -169,27 +171,6 @@ const Page = () => {
 		}
 	};
 
-	const { data: answersData, error: answersError } = useSWR(
-		answer
-			? `http://localhost:3001/api/v1/answers/check?user_answer=${encodeURIComponent(
-					answer
-			  )}`
-			: null,
-		fetcher
-	);
-
-	useEffect(() => {
-		if (executionsError) {
-			console.log(executionsError);
-			console.log('エラー');
-		}
-		if (answersData) {
-			console.log(answersData);
-			console.log('データが取得できた');
-			setModalContent(answersData.result);
-		}
-	}, [answersData, answersError]);
-
 	// ------------------------------------------------------------------------
 
 	// --------------------------正解を見る--------------------------------------
@@ -226,12 +207,33 @@ const Page = () => {
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? `http://localhost:3001/api/v1/executions/execute?active_record_string=${encodeURIComponent(
+			? `http://localhost:3001/api/v1/executions?active_record_string=${encodeURIComponent(
 					code
 			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);
+
+	const { data: answersData, error: answersError } = useSWR(
+		answer
+			? `http://localhost:3001/api/v1/executions/check?user_answer=${encodeURIComponent(
+					answer
+			  )}&practice_id=${answerPracticesData[currentQuestionIndex].id}`
+			: null,
+		fetcher
+	);
+
+	useEffect(() => {
+		if (executionsError) {
+			console.log(executionsError);
+			console.log('エラー');
+		}
+		if (answersData) {
+			console.log(answersData);
+			console.log('データが取得できた');
+			setModalContent(answersData.result);
+		}
+	}, [answersData, answersError]);
 
 	useEffect(() => {
 		if (executionsError) {
@@ -332,7 +334,7 @@ const Page = () => {
 											<div className="mt-1.5 ml-5 ">
 												<Tooltip title="実行する" placement="right-start">
 													<IconButton aria-label="delete">
-														<SyncIcon
+														<PlayCircleOutlineIcon
 															onClick={(event) => {
 																executeCode();
 																setValue('3');
@@ -366,7 +368,9 @@ const Page = () => {
 										</TabList>
 									</Box>
 									<TabPanel value="1">Item One</TabPanel>
-									<TabPanel value="2">Item Two</TabPanel>
+									<TabPanel value="2" sx={{ height: 488 }}>
+										<img loading="lazy" src="/db.png" alt="Logspot" />
+									</TabPanel>
 									<TabPanel value="3">
 										{executionsData && 'result' in executionsData ? (
 											<div className="height">{executionsData.result}</div>
@@ -469,9 +473,13 @@ const Page = () => {
 								if (currentQuestionIndex < answerPracticesData.length - 1) {
 									let nextIndex = currentQuestionIndex + 1;
 									setCurrentQuestionIndex(nextIndex);
+									console.log('nextIndex');
+									console.log(nextIndex);
+									console.log('slug');
+									console.log(slug);
 									handleClose();
 									router.push(
-										`http://localhost:3000/works/${slug}/${nextIndex}`
+										`http://localhost:3000/works/${slug}/${nextIndex + 1}`
 									);
 								} else {
 									handleClose();
@@ -503,8 +511,7 @@ const Page = () => {
 						<div className="bg-slate-700 text-white pt-8 pb-8 pl-3 pr-8  rounded-md">
 							<p className="mt-2 text-xl text-slate-200">
 								{answerPracticesData &&
-									typeof id === 'string' &&
-									answerPracticesData[id].answer}
+									answerPracticesData[Number(id) - 1].answer}
 							</p>
 						</div>
 					</Typography>
