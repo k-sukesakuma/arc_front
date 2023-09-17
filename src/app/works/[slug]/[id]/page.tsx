@@ -227,7 +227,7 @@ const Page = () => {
 
 	// ------------------------------次の問題に遷移------------------------------
 
-	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
+	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
 	const params = useParams();
 	const slug = params.slug;
@@ -238,7 +238,7 @@ const Page = () => {
 	console.log(slug);
 
 	useEffect(() => {
-		setCurrentQuestionIndex(Number(id));
+		setCurrentQuestionIndex(Number(id) - 1);
 	}, [id]);
 
 	const router = useRouter();
@@ -255,6 +255,7 @@ const Page = () => {
 		}
 		if (answerPracticesData) {
 			console.log('問題');
+			console.log('answerPracticesData');
 			console.log(answerPracticesData);
 			console.log('データが取得できた');
 		}
@@ -473,10 +474,12 @@ const Page = () => {
 								if (currentQuestionIndex < answerPracticesData.length - 1) {
 									let nextIndex = currentQuestionIndex + 1;
 									setCurrentQuestionIndex(nextIndex);
+									handleClose();
 									router.push(
 										`http://localhost:3000/works/${slug}/${nextIndex}`
 									);
 								} else {
+									handleClose();
 									router.push('http://localhost:3000/works');
 								}
 							}}
