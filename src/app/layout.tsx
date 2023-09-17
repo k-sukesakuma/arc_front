@@ -1,8 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import NextAuthProvider from '@/providers/NextAuth';
-import ToastProvider from '@/providers/toast.provider';
-import 'react-toastify/dist/ReactToastify.css';
+
+import toast, { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
 	title: 'ActiveRecord学習サービス | current_user',
@@ -17,9 +17,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<ToastProvider>
-					<NextAuthProvider>{children}</NextAuthProvider>
-				</ToastProvider>
+				<NextAuthProvider>
+					<Toaster position="bottom-center" reverseOrder={true} />
+					{children}
+				</NextAuthProvider>
 			</body>
 		</html>
 	);

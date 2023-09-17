@@ -3,93 +3,61 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
+import toast, { Toaster } from 'react-hot-toast';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import AppsIcon from '@mui/icons-material/Apps';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 import Alert from '@mui/material/Alert';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 
 export default function Aside() {
-	const [showAlert, setShowAlert] = useState(false);
-
 	const handleLogin = async () => {
-		await signIn('google', { callbackUrl: '/works' });
+		toast.promise(
+			signIn('google', { callbackUrl: '/works' }),
+			{
+				loading: 'ログイン中です...',
+				success: 'ログインに成功しました',
+				error: 'ログインに失敗しました',
+			},
+			{
+				success: {
+					duration: 5000,
+					icon: '👍',
+				},
+			}
+		);
 	};
 
 	const handleLogout = async () => {
-		await signOut({ callbackUrl: '/' });
+		toast.promise(
+			signOut({ callbackUrl: '/' }),
+			{
+				loading: 'ログアウト中です...',
+				success: 'ログアウトに成功しました',
+				error: 'ログアウトに失敗しました',
+			},
+			{
+				success: {
+					duration: 5000,
+					icon: '👍',
+				},
+			}
+		);
 	};
 
 	const { data: session, status } = useSession();
 
-	const [showLoginAlert, setShowLoginAlert] = useState(false);
-	const [showLogoutAlert, setShowLogoutAlert] = useState(false);
-	const [prevStatus, setPrevStatus] = useState('unauthenticated');
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const storedShowLoginAlert = localStorage.getItem('showLoginAlert');
-			if (storedShowLoginAlert) {
-				setShowLoginAlert(JSON.parse(storedShowLoginAlert));
-			}
-
-			const storedShowLogoutAlert = localStorage.getItem('showLogoutAlert');
-			if (storedShowLogoutAlert) {
-				setShowLogoutAlert(JSON.parse(storedShowLogoutAlert));
-			}
-
-			const storedStatus = localStorage.getItem('status');
-			if (storedStatus) {
-				setPrevStatus(storedStatus);
-			}
-		}
-	}, []);
-	const pathname = usePathname();
-
-	useEffect(() => {
-		if (prevStatus !== undefined && prevStatus !== status) {
-			if (status === 'authenticated' && pathname === '/works') {
-				setShowLoginAlert(true);
-				const timer = setTimeout(() => {
-					setShowLoginAlert(false);
-				}, 5000);
-				return () => clearTimeout(timer);
-			} else if (status !== 'authenticated' && pathname === '/') {
-				setShowLogoutAlert(true);
-				const timer = setTimeout(() => {
-					setShowLogoutAlert(false);
-				}, 5000);
-				return () => clearTimeout(timer);
-			}
-		}
-		setPrevStatus(status); // ステータスの更新
-	}, [status, prevStatus]);
-
 	return (
 		<div>
-			<>
-				{showLoginAlert && status === 'authenticated' && (
-					<Alert severity="success" color="info" className="toast">
-						ログインに成功しました
-					</Alert>
-				)}
-				{showLogoutAlert && status !== 'authenticated' && (
-					<Alert severity="success" color="info" className="toast">
-						ログアウトに成功しました
-					</Alert>
-				)}
-			</>
+			<></>
 			<aside className="border-r w-20 h-screen bg-slate-100 sticky top-0 flex flex-col items-center py-8 flex-shrink-0 justify-between">
 				<div>
 					<a href="/">
-						<Image
-							src="/logo.png"
-							alt="Logspot"
-							width={40} // あなたが必要とする幅（ピクセル単位）
-							height={40} // あなたが必要とする高さ（ピクセル単位）
-						/>
+						<Image src="/logo.png" alt="Logspot" width={40} height={40} />
 					</a>
 					{status !== 'authenticated' ? (
 						<Tooltip title="下からログインしてください" placement="bottom">
@@ -99,16 +67,18 @@ export default function Aside() {
 						</Tooltip>
 					) : (
 						<Tooltip title="問題集一覧" placement="bottom">
-							<IconButton aria-label="delete">
-								<AppsIcon />
-							</IconButton>
+							<a href="/works">
+								<IconButton aria-label="delete">
+									<AppsIcon />
+								</IconButton>
+							</a>
 						</Tooltip>
 					)}
 				</div>
 				{status !== 'authenticated' ? (
 					<Tooltip title="ログイン" placement="top">
 						<IconButton aria-label="delete" onClick={handleLogin}>
-							<LogoutIcon />
+							<LoginIcon />
 						</IconButton>
 					</Tooltip>
 				) : (
