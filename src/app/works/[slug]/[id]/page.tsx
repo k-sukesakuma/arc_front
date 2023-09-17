@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Aside from '@/app/components/Aside';
 import { Box, Grid, Tab } from '@mui/material';
 import { TabContext } from '@mui/lab';
@@ -7,7 +8,6 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import SyncIcon from '@mui/icons-material/Sync';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import { styled } from '@mui/material/styles';
@@ -15,7 +15,6 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 import { blueGrey } from '@mui/material/colors';
 import CodeEditor from '@/app/components/CodeEditor';
-import Editor from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
 
 import Typography from '@mui/material/Typography';
@@ -33,6 +32,11 @@ import useSWR from 'swr';
 
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface Column {
 	id: 'name' | 'code' | 'population' | 'size' | 'density';
@@ -125,35 +129,11 @@ interface ExecutionDataType {
 
 const Page = () => {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-	const {
-		data: staticsData,
-		error: staticsError,
-		isLoading,
-	} = useSWR('http://localhost:3001/api/v1/statics', fetcher);
-	console.log(staticsData);
 
 	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);
 	const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
 	const [code, setCode] = useState('');
 
-	const { data: executionsData, error: executionsError } = useSWR(
-		code
-			? `http://localhost:3001/api/v1/executions/execute?active_record_string=${encodeURIComponent(
-					code
-			  )}`
-			: null,
-		fetcher
-	);
-
-	useEffect(() => {
-		if (executionsError) {
-			console.log('エラー');
-		}
-		if (executionsData) {
-			console.log(executionsData);
-			console.log('データが取得できた');
-		}
-	}, [executionsData, executionsError]);
 	const handleEditorDidMount = (
 		editor: monaco.editor.IStandaloneCodeEditor | null
 	) => {
@@ -193,11 +173,56 @@ const Page = () => {
 		}
 	};
 
+	// ------------------------------------------------------------------------
+
+	// --------------------------正解を見る--------------------------------------
+
+	const [open2, setOpen2] = useState(false);
+
+	const handleOpen2 = () => setOpen2(true);
+	const handleClose2 = () => setOpen2(false);
+
+	// ------------------------------------------------------------------------
+
+	// ------------------------------次の問題に遷移------------------------------
+
+	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+	const params = useParams();
+	const slug = params.slug;
+	const id = params.id;
+
+	console.log(params);
+	console.log(id);
+	console.log(slug);
+
+	useEffect(() => {
+		setCurrentQuestionIndex(Number(id) - 1);
+	}, [id]);
+
+	const router = useRouter();
+
+	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
+		apiUrl + `/api/v1/practices?slug=${slug}`,
+		fetcher
+	);
+
+	const { data: executionsData, error: executionsError } = useSWR(
+		code
+			? apiUrl +
+					`/api/v1/executions?active_record_string=${encodeURIComponent(
+						code
+					)}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			: null,
+		fetcher
+	);
+
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? `http://localhost:3001/api/v1/answers/check?user_answer=${encodeURIComponent(
-					answer
-			  )}`
+			? apiUrl +
+					`/api/v1/executions/check?user_answer=${encodeURIComponent(
+						answer
+					)}&practice_id=${answerPracticesData[currentQuestionIndex].id}`
 			: null,
 		fetcher
 	);
@@ -212,41 +237,17 @@ const Page = () => {
 			console.log('データが取得できた');
 			setModalContent(answersData.result);
 		}
-	}, [answersData, answersError]);
-
-	// ------------------------------------------------------------------------
-
-	// --------------------------正解を見る--------------------------------------
-
-	const [open2, setOpen2] = useState(false);
-
-	const handleOpen2 = () => setOpen2(true);
-	const handleClose2 = () => setOpen2(false);
-
-	// ------------------------------------------------------------------------
-
-	// ------------------------------次の問題に遷移------------------------------
-
-	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
-
-	const params = useParams();
-	const slug = params.slug;
-	const id = params.id;
-
-	console.log(params);
-	console.log(id);
-	console.log(slug);
+	}, [answersData, executionsError]);
 
 	useEffect(() => {
-		setCurrentQuestionIndex(Number(id));
-	}, [id]);
-
-	const router = useRouter();
-
-	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`http://localhost:3001/api/v1/practices?slug=${slug}`,
-		fetcher
-	);
+		if (executionsError) {
+			console.log('エラー');
+		}
+		if (executionsData) {
+			console.log(executionsData);
+			console.log('データが取得できた');
+		}
+	}, [executionsData, executionsError]);
 
 	useEffect(() => {
 		if (answerPracticesError) {
@@ -255,6 +256,7 @@ const Page = () => {
 		}
 		if (answerPracticesData) {
 			console.log('問題');
+			console.log('answerPracticesData');
 			console.log(answerPracticesData);
 			console.log('データが取得できた');
 		}
@@ -318,8 +320,8 @@ const Page = () => {
 							</div>
 						</div>
 					</div>
-					{executionData.map((value) => (
-						<li className="p-4">
+					{executionData.map((value, index) => (
+						<li key={index} className="p-4">
 							<button className="font-bold">{value.name}</button>
 						</li>
 					))}
@@ -336,7 +338,7 @@ const Page = () => {
 											<div className="mt-1.5 ml-5 ">
 												<Tooltip title="実行する" placement="right-start">
 													<IconButton aria-label="delete">
-														<SyncIcon
+														<PlayCircleOutlineIcon
 															onClick={(event) => {
 																executeCode();
 																setValue('3');
@@ -370,7 +372,9 @@ const Page = () => {
 										</TabList>
 									</Box>
 									<TabPanel value="1">Item One</TabPanel>
-									<TabPanel value="2">Item Two</TabPanel>
+									<TabPanel value="2" sx={{ height: 488 }}>
+										<Image src="/db.png" alt="db" />
+									</TabPanel>
 									<TabPanel value="3">
 										{executionsData && 'result' in executionsData ? (
 											<div className="height">{executionsData.result}</div>
@@ -473,11 +477,15 @@ const Page = () => {
 								if (currentQuestionIndex < answerPracticesData.length - 1) {
 									let nextIndex = currentQuestionIndex + 1;
 									setCurrentQuestionIndex(nextIndex);
-									router.push(
-										`http://localhost:3000/works/${slug}/${nextIndex}`
-									);
+									console.log('nextIndex');
+									console.log(nextIndex);
+									console.log('slug');
+									console.log(slug);
+									handleClose();
+									router.push(`/works/${slug}/${nextIndex + 1}`);
 								} else {
-									router.push('http://localhost:3000/works');
+									handleClose();
+									router.push('/works');
 								}
 							}}
 						>
@@ -505,8 +513,7 @@ const Page = () => {
 						<div className="bg-slate-700 text-white pt-8 pb-8 pl-3 pr-8  rounded-md">
 							<p className="mt-2 text-xl text-slate-200">
 								{answerPracticesData &&
-									typeof id === 'string' &&
-									answerPracticesData[id].answer}
+									answerPracticesData[Number(id) - 1].answer}
 							</p>
 						</div>
 					</Typography>

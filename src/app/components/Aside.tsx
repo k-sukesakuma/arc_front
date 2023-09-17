@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import AppsIcon from '@mui/icons-material/Apps';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
-
-import { toast } from 'react-toastify';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
 
@@ -64,11 +63,11 @@ export default function Aside() {
 			<aside className="border-r w-20 h-screen bg-slate-100 sticky top-0 flex flex-col items-center py-8 flex-shrink-0 justify-between">
 				<div>
 					<a href="/">
-						<img
-							loading="lazy"
+						<Image
 							src="/logo.png"
 							alt="Logspot"
-							className="h-10 w-15"
+							width={40} // あなたが必要とする幅（ピクセル単位）
+							height={40} // あなたが必要とする高さ（ピクセル単位）
 						/>
 					</a>
 					{status !== 'authenticated' ? (

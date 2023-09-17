@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import LoginButton from './components/LoginButton';
 import Aside from './components/Aside';
 
-export default async function Home() {
+export default function Home() {
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
