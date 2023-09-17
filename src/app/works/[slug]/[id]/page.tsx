@@ -125,35 +125,11 @@ interface ExecutionDataType {
 
 const Page = () => {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-	const {
-		data: staticsData,
-		error: staticsError,
-		isLoading,
-	} = useSWR('http://localhost:3001/api/v1/statics', fetcher);
-	console.log(staticsData);
 
 	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);
 	const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
 	const [code, setCode] = useState('');
 
-	const { data: executionsData, error: executionsError } = useSWR(
-		code
-			? `http://localhost:3001/api/v1/executions/execute?active_record_string=${encodeURIComponent(
-					code
-			  )}`
-			: null,
-		fetcher
-	);
-
-	useEffect(() => {
-		if (executionsError) {
-			console.log('エラー');
-		}
-		if (executionsData) {
-			console.log(executionsData);
-			console.log('データが取得できた');
-		}
-	}, [executionsData, executionsError]);
 	const handleEditorDidMount = (
 		editor: monaco.editor.IStandaloneCodeEditor | null
 	) => {
@@ -247,6 +223,25 @@ const Page = () => {
 		`http://localhost:3001/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
+
+	const { data: executionsData, error: executionsError } = useSWR(
+		code
+			? `http://localhost:3001/api/v1/executions/execute?active_record_string=${encodeURIComponent(
+					code
+			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			: null,
+		fetcher
+	);
+
+	useEffect(() => {
+		if (executionsError) {
+			console.log('エラー');
+		}
+		if (executionsData) {
+			console.log(executionsData);
+			console.log('データが取得できた');
+		}
+	}, [executionsData, executionsError]);
 
 	useEffect(() => {
 		if (answerPracticesError) {
