@@ -373,7 +373,12 @@ const Page = () => {
 									</Box>
 									<TabPanel value="1">Item One</TabPanel>
 									<TabPanel value="2" sx={{ height: 488 }}>
-										<Image src="/db.png" alt="db" />
+										<Image
+											src="/db.png"
+											alt="db"
+											width={600} // あなたが必要とする幅（ピクセル単位）
+											height={680}
+										/>
 									</TabPanel>
 									<TabPanel value="3">
 										{executionsData && 'result' in executionsData ? (

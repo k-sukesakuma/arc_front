@@ -13,9 +13,6 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Aside() {
 	const [showAlert, setShowAlert] = useState(false);
-	const { data: session, status } = useSession();
-	const [showLoginAlert, setShowLoginAlert] = useState(false);
-	const [showLogoutAlert, setShowLogoutAlert] = useState(false);
 
 	const handleLogin = async () => {
 		await signIn('google', { callbackUrl: '/works' });
@@ -25,11 +22,34 @@ export default function Aside() {
 		await signOut({ callbackUrl: '/' });
 	};
 
-	const [prevStatus, setPrevStatus] = useState(status);
+	const { data: session, status } = useSession();
+	const storedShowLoginAlert = localStorage.getItem('showLoginAlert');
+	const [showLoginAlert, setShowLoginAlert] = useState(
+		storedShowLoginAlert ? JSON.parse(storedShowLoginAlert) : false
+	);
+
+	const storedShowLogoutAlert = localStorage.getItem('showLogoutAlert');
+	const [showLogoutAlert, setShowLogoutAlert] = useState(
+		storedShowLogoutAlert ? JSON.parse(storedShowLogoutAlert) : false
+	);
+
+	const [prevStatus, setPrevStatus] = useState(
+		localStorage.getItem('status') || 'unauthenticated'
+	);
+	useEffect(() => {
+		localStorage.setItem('showLoginAlert', JSON.stringify(showLoginAlert));
+	}, [showLoginAlert]);
 
 	useEffect(() => {
-		// ログイン状態が前回と異なる時だけアラート
-		if (prevStatus !== status) {
+		localStorage.setItem('showLogoutAlert', JSON.stringify(showLogoutAlert));
+	}, [showLogoutAlert]);
+
+	useEffect(() => {
+		localStorage.setItem('status', status);
+	}, [status]);
+
+	useEffect(() => {
+		if (prevStatus !== undefined && prevStatus !== status) {
 			if (status === 'authenticated') {
 				setShowLoginAlert(true);
 				const timer = setTimeout(() => {
@@ -44,6 +64,7 @@ export default function Aside() {
 				return () => clearTimeout(timer);
 			}
 		}
+		setPrevStatus(status); // ステータスの更新
 	}, [status, prevStatus]);
 
 	return (

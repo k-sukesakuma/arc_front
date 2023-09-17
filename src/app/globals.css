@@ -23,5 +23,5 @@
 	position: fixed;
 	bottom: 30px;
 	left: 100px;
-	animation: slide-bottom 0.5s, forwards;
+	animation: slide-bottom 1s, forwards;
 }
