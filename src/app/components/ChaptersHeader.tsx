@@ -44,11 +44,12 @@ export default function WorksHeader() {
 			<div>
 				<div className="shadow-md px-6 py-4 my-10 mx-20 rounded-lg bg-white">
 					<div className="text-xl font-bold text-gray-900 px-3 mb-2">
-						【全{data.chapters.length}問】 {data.description}
+						【全{data?.chapters?.length}問】 {data?.description}
 					</div>
+
 					<hr className="mt-1 mb-2 rounded-lg" />
 					<div>
-						{data.chapters.map((chapter: any, index: any) => (
+						{data?.chapters?.map((chapter: any, index: any) => (
 							<div
 								key={index}
 								className="px-4 py-3 font-semibold rounded-lg hover:bg-slate-200"
