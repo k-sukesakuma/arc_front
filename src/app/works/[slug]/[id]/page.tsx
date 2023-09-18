@@ -36,7 +36,7 @@ import { useRouter } from 'next/navigation';
 
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface Column {
@@ -204,28 +204,26 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		apiUrl + `/api/v1/practices?slug=${slug}`,
+		`http://localhost:3001/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? apiUrl +
-					`/api/v1/executions?active_record_string=${encodeURIComponent(
-						code
-					)}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			? `http://localhost:3001/api/v1/executions?active_record_string=${encodeURIComponent(
+					code
+			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? apiUrl +
-					`/api/v1/executions/check?user_answer=${encodeURIComponent(
-						answer
-					)}&practice_id=${
-						answerPracticesData[currentQuestionIndex].id
-					}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			? `http://localhost:3001/api/v1/executions/check?user_answer=${encodeURIComponent(
+					answer
+			  )}&practice_id=${
+					answerPracticesData[currentQuestionIndex].id
+			  }&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);

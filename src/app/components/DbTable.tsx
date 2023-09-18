@@ -16,7 +16,7 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-	{ id: 'name', label: 'name', minWidth: 10 },
+	{ id: 'name', label: 'name', minWidth: 100 },
 	{ id: 'email', label: 'email', minWidth: 100 },
 	{ id: 'password', label: 'password', minWidth: 100 },
 ];
@@ -35,13 +35,13 @@ const rows = [
 	createData('John', 'john1@example.com', 'xxxxxxxxxx'),
 	createData('Emily', 'emily@example.com', 'xxxxxxxxxx'),
 	createData('Steve', 'steve@example.com', 'xxxxxxxxxx'),
-	createData('michael', 'michael@example.com', 'xxxxxxxxxx'),
+	createData('Michael', 'michael@example.com', 'xxxxxxxxxx'),
 	createData('Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
-	createData('Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
-	createData('Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
-	createData('Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
-	createData('Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
-	createData('Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
+	createData('George', 'george@example.com', 'xxxxxxxxxx'),
+	createData('Lily', 'lily@example.com', 'xxxxxxxxxx'),
+	createData('Dudley', 'dudley@example.com', 'xxxxxxxxxx'),
+	createData('Luna', 'luna@example.com', 'xxxxxxxxxx'),
+	createData('Bill', 'bill@example.com', 'xxxxxxxxxx'),
 ];
 
 export default function StickyHeadTable() {
