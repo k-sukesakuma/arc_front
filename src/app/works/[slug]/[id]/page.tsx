@@ -204,13 +204,13 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`http://localhost:3001/api/v1/practices?slug=${slug}`,
+		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? `http://localhost:3001/api/v1/executions?active_record_string=${encodeURIComponent(
+			? `https://current-user-back.onrender.com/api/v1/executions?active_record_string=${encodeURIComponent(
 					code
 			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
@@ -219,7 +219,7 @@ const Page = () => {
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? `http://localhost:3001/api/v1/executions/check?user_answer=${encodeURIComponent(
+			? `https://current-user-back.onrender.com/api/v1/executions/check?user_answer=${encodeURIComponent(
 					answer
 			  )}&practice_id=${
 					answerPracticesData[currentQuestionIndex].id
@@ -369,6 +369,7 @@ const Page = () => {
 										>
 											<Tab label="ユーザー一覧" value="1" />
 											<Tab label="ER図" value="2" />
+											<Tab label="リレーション" value="4" />
 											<Tab label="実行結果" value="3" />
 										</TabList>
 									</Box>
@@ -378,6 +379,20 @@ const Page = () => {
 									<TabPanel value="2" sx={{ height: 488 }}>
 										<Image src="/db.png" alt="db" width={600} height={680} />
 									</TabPanel>
+									<TabPanel value="4" sx={{ height: 488 }}>
+										<Image
+											src="/relation.png"
+											alt="relation"
+											width={389}
+											height={250}
+											style={{
+												borderRadius: '1%',
+												margin: 'auto',
+												display: 'block',
+											}}
+										/>
+									</TabPanel>
+
 									<TabPanel value="3">
 										{executionsData && 'result' in executionsData ? (
 											<div className="height">{executionsData.result}</div>
