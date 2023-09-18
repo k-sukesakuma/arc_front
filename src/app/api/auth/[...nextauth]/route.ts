@@ -21,7 +21,7 @@ const handler = NextAuth({
 
 			try {
 				const response = await axios.post(
-					`${apiUrl}/auth/${provider}/callback`,
+					`https://current-user.vercel.app/auth/${provider}/callback`,
 					{
 						provider,
 						uid,
