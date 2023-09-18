@@ -22,7 +22,7 @@ export default function CodeEditor({
 			theme="vs-light"
 			height="440px"
 			defaultLanguage="ruby"
-			defaultValue="Welcome to Arc👋"
+			defaultValue=""
 			loading={<CircularProgress style={{ color: 'grey' }} />}
 			className=" overflow-hidden"
 			options={options}

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Aside from '@/app/components/Aside';
+import DbTable from '@/app/components/DbTable';
 import { Box, Grid, Tab } from '@mui/material';
 import { TabContext } from '@mui/lab';
 import TabList from '@mui/lab/TabList';
@@ -203,24 +204,28 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
+		apiUrl + `/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? `https://current-user-back.onrender.com/api/v1/executions?active_record_string=${encodeURIComponent(
-					code
-			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			? apiUrl +
+					`/api/v1/executions?active_record_string=${encodeURIComponent(
+						code
+					)}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? `https://current-user-back.onrender.com/api/v1/executions/check?user_answer=${encodeURIComponent(
-					answer
-			  )}&practice_id=${answerPracticesData[currentQuestionIndex].id}`
+			? apiUrl +
+					`/api/v1/executions/check?user_answer=${encodeURIComponent(
+						answer
+					)}&practice_id=${
+						answerPracticesData[currentQuestionIndex].id
+					}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);
@@ -364,19 +369,16 @@ const Page = () => {
 											onChange={handleChange}
 											aria-label="lab API tabs example"
 										>
-											<Tab label="DB" value="1" />
+											<Tab label="ユーザー一覧" value="1" />
 											<Tab label="ER図" value="2" />
 											<Tab label="実行結果" value="3" />
 										</TabList>
 									</Box>
-									<TabPanel value="1">Item One</TabPanel>
+									<TabPanel value="1">
+										<DbTable />
+									</TabPanel>
 									<TabPanel value="2" sx={{ height: 488 }}>
-										<Image
-											src="/db.png"
-											alt="db"
-											width={600} // あなたが必要とする幅（ピクセル単位）
-											height={680}
-										/>
+										<Image src="/db.png" alt="db" width={600} height={680} />
 									</TabPanel>
 									<TabPanel value="3">
 										{executionsData && 'result' in executionsData ? (
@@ -471,29 +473,28 @@ const Page = () => {
 					<Typography id="modal-modal-title" variant="h6" component="h2">
 						{modalContent ? '正解' : '不正解'}
 					</Typography>
+
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						{modalContent
 							? 'おめでとうございます！次の問題に挑戦してみましょう！'
 							: '不正解です、、！！もう一度自分のコードに間違いがないか確認してみましょう。'}
-						<Button
-							onClick={() => {
-								if (currentQuestionIndex < answerPracticesData.length - 1) {
-									let nextIndex = currentQuestionIndex + 1;
-									setCurrentQuestionIndex(nextIndex);
-									console.log('nextIndex');
-									console.log(nextIndex);
-									console.log('slug');
-									console.log(slug);
-									handleClose();
-									router.push(`/works/${slug}/${nextIndex + 1}`);
-								} else {
-									handleClose();
-									router.push('/works');
-								}
-							}}
-						>
-							次の問題へ
-						</Button>
+						{modalContent && (
+							<Button
+								onClick={() => {
+									if (currentQuestionIndex < answerPracticesData.length - 1) {
+										let nextIndex = currentQuestionIndex + 1;
+										setCurrentQuestionIndex(nextIndex);
+										handleClose();
+										router.push(`/works/${slug}/${nextIndex + 1}`);
+									} else {
+										handleClose();
+										router.push('/works');
+									}
+								}}
+							>
+								次の問題へ
+							</Button>
+						)}
 					</Typography>
 				</Box>
 			</Modal>
