@@ -36,6 +36,8 @@ import { useRouter } from 'next/navigation';
 
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
+import TwitterIcon from '@mui/icons-material/Twitter';
+
 import { useSWRConfig } from 'swr';
 
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
@@ -479,30 +481,44 @@ const Page = () => {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<Typography id="modal-modal-title" variant="h6" component="h2">
-						{modalContent ? '正解' : '不正解'}
+					<Typography id="modal-modal-title" variant="h6" component="h1">
+						{modalContent ? '正解👍' : '不正解🏃‍♂️'}
 					</Typography>
-
-					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+					<Typography id="modal-modal-description" sx={{ mt: 1 }}>
 						{modalContent
 							? 'おめでとうございます！次の問題に挑戦してみましょう！'
 							: '不正解です、、！！もう一度自分のコードに間違いがないか確認してみましょう。'}
 						{modalContent && (
-							<Button
-								onClick={() => {
-									if (currentQuestionIndex < answerPracticesData.length - 1) {
-										let nextIndex = currentQuestionIndex + 1;
-										setCurrentQuestionIndex(nextIndex);
-										handleClose();
-										router.push(`/works/${slug}/${nextIndex + 1}`);
-									} else {
-										handleClose();
-										router.push('/works');
-									}
-								}}
-							>
-								次の問題へ
-							</Button>
+							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+								<Button
+									onClick={() => {
+										const tweetText =
+											'I just completed a challenge on this awesome coding platform!';
+										const url = window.location.href;
+										window.open(
+											`https://twitter.com/intent/tweet?text=${tweetText}&url=${url}`,
+											'_blank'
+										);
+									}}
+								>
+									<TwitterIcon />
+								</Button>
+								<Button
+									onClick={() => {
+										if (currentQuestionIndex < answerPracticesData.length - 1) {
+											let nextIndex = currentQuestionIndex + 1;
+											setCurrentQuestionIndex(nextIndex);
+											handleClose();
+											router.push(`/works/${slug}/${nextIndex + 1}`);
+										} else {
+											handleClose();
+											router.push('/works');
+										}
+									}}
+								>
+									次の問題へ
+								</Button>
+							</div>
 						)}
 					</Typography>
 				</Box>
@@ -520,12 +536,16 @@ const Page = () => {
 						component="h2"
 						className="font-semibold"
 					>
-						答え
+						答え😎
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						<div
-							className="bg-slate-700 text-white pt-8 pb-8 pl-3 pr-8 rounded-md"
-							style={{ maxHeight: '200px', overflowY: 'auto' }}
+							className="bg-black text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
+							style={{
+								maxHeight: '200px',
+								overflowY: 'auto',
+								overflowX: 'auto',
+							}}
 						>
 							<p className="mt-2 text-xl text-slate-200">
 								{answerPracticesData &&
