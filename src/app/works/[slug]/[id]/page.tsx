@@ -203,26 +203,24 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		apiUrl + `/api/v1/practices?slug=${slug}`,
+		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? apiUrl +
-					`/api/v1/executions?active_record_string=${encodeURIComponent(
-						code
-					)}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			? `https://current-user-back.onrender.com/api/v1/executions?active_record_string=${encodeURIComponent(
+					code
+			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? apiUrl +
-					`/api/v1/executions/check?user_answer=${encodeURIComponent(
-						answer
-					)}&practice_id=${answerPracticesData[currentQuestionIndex].id}`
+			? `https://current-user-back.onrender.com/api/v1/executions/check?user_answer=${encodeURIComponent(
+					answer
+			  )}&practice_id=${answerPracticesData[currentQuestionIndex].id}`
 			: null,
 		fetcher
 	);
