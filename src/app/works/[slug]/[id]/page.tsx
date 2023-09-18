@@ -381,8 +381,8 @@ const Page = () => {
 										<Image
 											src="/relation.png"
 											alt="relation"
-											width={389}
-											height={250}
+											width={460}
+											height={380}
 											style={{
 												borderRadius: '1%',
 												margin: 'auto',
