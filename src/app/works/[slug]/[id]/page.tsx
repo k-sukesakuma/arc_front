@@ -36,6 +36,11 @@ import { useRouter } from 'next/navigation';
 
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
+import { useSWRConfig } from 'swr';
+
+const { mutate } = useSWRConfig();
+mutate((key) => true, undefined, { revalidate: false });
+
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -140,10 +145,7 @@ const Page = () => {
 	) => {
 		if (editor && editor.getModel()) {
 			editorRef.current = editor;
-			editor.onDidChangeModelContent((event) => {
-				const previousLine = event.changes[0].range.startLineNumber - 1;
-				const currentLine = event.changes[0].range.endLineNumber - 1;
-			});
+			editor.onDidChangeModelContent((event) => {});
 		}
 	};
 
@@ -153,8 +155,6 @@ const Page = () => {
 				preserveBOM: false,
 				lineEnding: '\n',
 			});
-			console.log(code);
-			console.log(code.indexOf('\n') !== -1);
 			setCode(code);
 		}
 	};
@@ -168,8 +168,6 @@ const Page = () => {
 				preserveBOM: false,
 				lineEnding: '\n',
 			});
-			console.log(code);
-			console.log(code.indexOf('\n') !== -1);
 			setAnswer(code);
 		}
 	};
@@ -192,10 +190,6 @@ const Page = () => {
 	const params = useParams();
 	const slug = params.slug;
 	const id = params.id;
-
-	console.log(params);
-	console.log(id);
-	console.log(slug);
 
 	useEffect(() => {
 		setCurrentQuestionIndex(Number(id) - 1);
@@ -527,7 +521,10 @@ const Page = () => {
 						答え
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-						<div className="bg-slate-700 text-white pt-8 pb-8 pl-3 pr-8  rounded-md">
+						<div
+							className="bg-slate-700 text-white pt-8 pb-8 pl-3 pr-8 rounded-md"
+							style={{ maxHeight: '200px', overflowY: 'auto' }}
+						>
 							<p className="mt-2 text-xl text-slate-200">
 								{answerPracticesData &&
 									answerPracticesData[Number(id) - 1].answer}
