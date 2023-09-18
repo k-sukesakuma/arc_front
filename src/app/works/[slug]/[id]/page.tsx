@@ -131,9 +131,6 @@ interface ExecutionDataType {
 }
 
 const Page = () => {
-	const { mutate } = useSWRConfig();
-	mutate((key) => true, undefined, { revalidate: false });
-
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);

@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import useSWR from 'swr';
 import axios from 'axios';
 
 export default function WorksHeader() {
 	const pathname = usePathname();
 	const slug = pathname.substring(7);
+	const [data, setData] = useState<Data | null>(null);
 
 	const getChapterName = (slug: String) => {
 		switch (slug) {
@@ -22,15 +22,26 @@ export default function WorksHeader() {
 	};
 	const displayChapterName = getChapterName(slug);
 
-	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-	const { data, error } = useSWR(
-		`http://localhost:3001/api/v1/chapters?slug=${slug}`,
-		fetcher
-	);
-
 	useEffect(() => {
-		console.log(data);
-	}, [data]);
+		axios
+			.get(`http://localhost:3001/api/v1/chapters?slug=${slug}`)
+			.then((res) => {
+				setData(res.data);
+				console.log(res.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, [slug]);
+
+	type Chapter = {
+		name: string;
+	};
+
+	type Data = {
+		chapters: Chapter[];
+		description: string;
+	};
 
 	return (
 		<header className="px-4 sm:px-6 lg:px-8">
