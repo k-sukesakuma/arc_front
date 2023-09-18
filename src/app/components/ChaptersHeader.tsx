@@ -24,7 +24,7 @@ export default function WorksHeader() {
 
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 	const { data, error } = useSWR(
-		`http://localhost:3001/api/v1/chapters?slug=${slug}`,
+		`https://current-user-back.onrender.com/api/v1/chapters?slug=${slug}`,
 		fetcher
 	);
 
