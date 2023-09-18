@@ -38,9 +38,6 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 import { useSWRConfig } from 'swr';
 
-const { mutate } = useSWRConfig();
-mutate((key) => true, undefined, { revalidate: false });
-
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -134,6 +131,9 @@ interface ExecutionDataType {
 }
 
 const Page = () => {
+	const { mutate } = useSWRConfig();
+	mutate((key) => true, undefined, { revalidate: false });
+
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);
