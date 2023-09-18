@@ -17,7 +17,7 @@ import { usePathname } from 'next/navigation';
 export default function Aside() {
 	const handleLogin = async () => {
 		toast.promise(
-			signIn('google', { callbackUrl: '/works' }),
+			signIn('github', { callbackUrl: '/works' }),
 			{
 				loading: 'ログイン中です...',
 				success: 'ログインに成功しました',
