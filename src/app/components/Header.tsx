@@ -9,7 +9,7 @@ const Header = () => {
 					<div className="flex items-center justify-center space-x-3">
 						<Image src="/logo.png" alt="Logspot" width={90} height={90} />
 						<h1 className="ml-5 text-6xl font-bold text-slate-600 sm:text-7xl tracking-wide">
-							current_user
+							current_user.
 						</h1>
 					</div>
 					<p className="mt-6 font-semibold text-2xl leading-7 text-slate-500 ">
