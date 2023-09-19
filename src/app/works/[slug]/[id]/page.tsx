@@ -251,6 +251,7 @@ const Page = () => {
 		if (answersData) {
 			console.log(answersData);
 			console.log('データが取得できた');
+			console.log('データが取得できた');
 			setModalContent(answersData.result);
 		}
 	}, [answersData, executionsError]);
