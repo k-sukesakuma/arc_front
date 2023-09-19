@@ -12,13 +12,27 @@ export const metadata: Metadata = {
 		url: 'https://current-user.vercel.app',
 		description:
 			'環境構築不要、Ruby on RailsのO/RマッパーであるActiveRecordの学習サービスです。',
-		images: ['https://current-user.vercel.app/opengraph-image.jpg'],
+		images: [
+			{
+				url: 'https://current-user.vercel.app/opengraph-image.jpg',
+				width: 1200,
+				height: 630,
+			},
+		],
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'current_user',
-		description:
-			'環境構築不要、Ruby on RailsのO/RマッパーであるActiveRecordの学習サービスです。',
+		title: 'Your title',
+		description: 'Your description',
+		creator: '@author_here',
+		images: [
+			{
+				url: 'https://current-user.vercel.app/opengraph-image.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'Your alt text',
+			},
+		],
 	},
 };
 
