@@ -28,6 +28,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
+			<meta
+				name="twitter:image"
+				content="https://current-user.vercel.app/twitter-image.jpg"
+			/>
 			<body>
 				<NextAuthProvider>
 					<Toaster position="bottom-center" reverseOrder={true} />
