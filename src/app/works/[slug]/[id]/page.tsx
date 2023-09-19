@@ -109,7 +109,7 @@ interface ExecutionDataType {
 	password: string;
 }
 
-const Page = () => {
+export default function Page() {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);
@@ -135,7 +135,6 @@ const Page = () => {
 		}
 	};
 
-	// --------------------------答え合わせ--------------------------------------
 	const [answer, setAnswer] = useState('');
 	const [modalContent, setModalContent] = useState(false);
 	const executeAnswer = () => {
@@ -148,18 +147,13 @@ const Page = () => {
 		}
 	};
 
-	// ------------------------------------------------------------------------
-
-	// --------------------------正解を見る--------------------------------------
+	const [open, setOpen] = useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 
 	const [open2, setOpen2] = useState(false);
-
 	const handleOpen2 = () => setOpen2(true);
 	const handleClose2 = () => setOpen2(false);
-
-	// ------------------------------------------------------------------------
-
-	// ------------------------------次の問題に遷移------------------------------
 
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -216,41 +210,10 @@ const Page = () => {
 	);
 
 	useEffect(() => {
-		if (executionsError) {
-			console.log(executionsError);
-			console.log('エラー');
-		}
 		if (answersData) {
-			console.log(answersData);
-			console.log('データが取得できた');
 			setModalContent(answersData.result);
 		}
 	}, [answersData, executionsError]);
-
-	useEffect(() => {
-		if (executionsError) {
-			console.log('エラー');
-		}
-		if (executionsData) {
-			console.log(executionsData);
-			console.log('データが取得できた');
-		}
-	}, [executionsData, executionsError]);
-
-	useEffect(() => {
-		if (answerPracticesError) {
-			console.log(answerPracticesError);
-			console.log('エラー');
-		}
-		if (answerPracticesData) {
-			console.log('問題');
-			console.log('answerPracticesData');
-			console.log(answerPracticesData);
-			console.log('データが取得できた');
-		}
-	}, [answerPracticesData, answerPracticesError]);
-
-	// ------------------------------------------------------------------------
 
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -266,10 +229,6 @@ const Page = () => {
 		setPage(0);
 	};
 
-	const [open, setOpen] = useState(false);
-
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
 	const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 		color: theme.palette.getContrastText(grey[50]),
 		backgroundColor: grey[50],
@@ -289,7 +248,6 @@ const Page = () => {
 		setLeftValue(newValue);
 	};
 
-	const [isFocused, setIsFocused] = useState(false);
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
@@ -548,6 +506,4 @@ const Page = () => {
 			</Modal>
 		</div>
 	);
-};
-
-export default Page;
+}
