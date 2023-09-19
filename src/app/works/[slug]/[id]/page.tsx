@@ -38,6 +38,11 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 import TwitterIcon from '@mui/icons-material/Twitter';
 
+import { useSWRConfig } from 'swr';
+
+const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 interface Column {
 	id: 'name' | 'code' | 'population' | 'size' | 'density';
 	label: string;
@@ -90,6 +95,24 @@ function createData(
 	return { name, code, population, size, density };
 }
 
+const rows = [
+	createData('India', 'IN', 1324171354, 3287263),
+	createData('China', 'CN', 1403500365, 9596961),
+	createData('Italy', 'IT', 60483973, 301340),
+	createData('United States', 'US', 327167434, 9833520),
+	createData('Canada', 'CA', 37602103, 9984670),
+	createData('Australia', 'AU', 25475400, 7692024),
+	createData('Germany', 'DE', 83019200, 357578),
+	createData('Ireland', 'IE', 4857000, 70273),
+	createData('Mexico', 'MX', 126577691, 1972550),
+	createData('Japan', 'JP', 126317000, 377973),
+	createData('France', 'FR', 67022000, 640679),
+	createData('United Kingdom', 'GB', 67545757, 242495),
+	createData('Russia', 'RU', 146793744, 17098246),
+	createData('Nigeria', 'NG', 200962417, 923768),
+	createData('Brazil', 'BR', 210147125, 8515767),
+];
+
 const style = {
 	position: 'absolute' as 'absolute',
 	top: '50%',
@@ -109,7 +132,7 @@ interface ExecutionDataType {
 	password: string;
 }
 
-export default function Page() {
+const Page = () => {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);
@@ -135,6 +158,7 @@ export default function Page() {
 		}
 	};
 
+	// --------------------------答え合わせ--------------------------------------
 	const [answer, setAnswer] = useState('');
 	const [modalContent, setModalContent] = useState(false);
 	const executeAnswer = () => {
@@ -147,13 +171,18 @@ export default function Page() {
 		}
 	};
 
-	const [open, setOpen] = useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	// ------------------------------------------------------------------------
+
+	// --------------------------正解を見る--------------------------------------
 
 	const [open2, setOpen2] = useState(false);
+
 	const handleOpen2 = () => setOpen2(true);
 	const handleClose2 = () => setOpen2(false);
+
+	// ------------------------------------------------------------------------
+
+	// ------------------------------次の問題に遷移------------------------------
 
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -162,6 +191,7 @@ export default function Page() {
 	const id = params.id;
 
 	const getChapterName = (slug: string | string[]) => {
+		// slugが文字列配列の場合、最初の要素を使用
 		const slugStr = Array.isArray(slug) ? slug[0] : slug;
 		switch (slugStr) {
 			case 'trial':
@@ -184,8 +214,7 @@ export default function Page() {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`https://current-user-back.onrender.com/
-		api/v1/practices?slug=${slug}`,
+		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
@@ -200,20 +229,51 @@ export default function Page() {
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? `https://current-user-back.onrender.com/api/v1/executions/check?user_answer=${encodeURIComponent(
+			? `https://current-user-back.onrender.com/api/v1/executions/check?active_record_string=${encodeURIComponent(
 					answer
-			  )}&practice_id=${
-					answerPracticesData[currentQuestionIndex].id
-			  }&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			  )}&user_id=${
+					answerPracticesData[currentQuestionIndex].user_id
+			  }&practice_id=${answerPracticesData[currentQuestionIndex].id}`
 			: null,
 		fetcher
 	);
 
 	useEffect(() => {
+		if (executionsError) {
+			console.log(executionsError);
+			console.log('エラー');
+		}
 		if (answersData) {
+			console.log(answersData);
+			console.log('データが取得できた');
 			setModalContent(answersData.result);
 		}
 	}, [answersData, executionsError]);
+
+	useEffect(() => {
+		if (executionsError) {
+			console.log('エラー');
+		}
+		if (executionsData) {
+			console.log(executionsData);
+			console.log('データが取得できた');
+		}
+	}, [executionsData, executionsError]);
+
+	useEffect(() => {
+		if (answerPracticesError) {
+			console.log(answerPracticesError);
+			console.log('エラー');
+		}
+		if (answerPracticesData) {
+			console.log('問題');
+			console.log('answerPracticesData');
+			console.log(answerPracticesData);
+			console.log('データが取得できた');
+		}
+	}, [answerPracticesData, answerPracticesError]);
+
+	// ------------------------------------------------------------------------
 
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -229,6 +289,10 @@ export default function Page() {
 		setPage(0);
 	};
 
+	const [open, setOpen] = useState(false);
+
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 	const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 		color: theme.palette.getContrastText(grey[50]),
 		backgroundColor: grey[50],
@@ -248,6 +312,7 @@ export default function Page() {
 		setLeftValue(newValue);
 	};
 
+	const [isFocused, setIsFocused] = useState(false);
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
@@ -275,7 +340,7 @@ export default function Page() {
 						<Grid item xs={6}>
 							<div className="shadow-md rounded-lg bg-white">
 								<TabContext value={leftValue}>
-									<Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
+									<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 										<TabList
 											onChange={leftHandleChange}
 											aria-label="lab API tabs example"
@@ -337,6 +402,7 @@ export default function Page() {
 											}}
 										/>
 									</TabPanel>
+
 									<TabPanel value="3">
 										{executionsData && 'result' in executionsData ? (
 											<div className="height">{executionsData.result}</div>
@@ -506,4 +572,6 @@ export default function Page() {
 			</Modal>
 		</div>
 	);
-}
+};
+
+export default Page;
