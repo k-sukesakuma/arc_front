@@ -513,7 +513,7 @@ const Page = () => {
 										const practiceTitle =
 											answerPracticesData[currentQuestionIndex].title;
 										const tweetText = `【${chapterName}】${practiceTitle}をクリアしたよ！`;
-										const url = window.location.href;
+										const url = window.location.origin;
 										window.open(
 											`https://twitter.com/intent/tweet?text=${tweetText}%0A%0A${url}`,
 											'_blank'
