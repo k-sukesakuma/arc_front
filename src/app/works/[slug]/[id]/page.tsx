@@ -222,9 +222,9 @@ const Page = () => {
 		answer
 			? `https://current-user-back.onrender.com/api/v1/executions/check?active_record_string=${encodeURIComponent(
 					answer
-			  )}&user_id=${
-					answerPracticesData[currentQuestionIndex].user_id
-			  }&practice_id=${answerPracticesData[currentQuestionIndex].id}`
+			  )}&practice_id=${
+					answerPracticesData[currentQuestionIndex].id
+			  }&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
 		fetcher
 	);
