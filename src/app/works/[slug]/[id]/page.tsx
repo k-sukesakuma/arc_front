@@ -345,7 +345,7 @@ const Page = () => {
 						<Grid item xs={6}>
 							<div className="shadow-md rounded-lg bg-white">
 								<TabContext value={leftValue}>
-									<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+									<Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
 										<TabList
 											onChange={leftHandleChange}
 											aria-label="lab API tabs example"
