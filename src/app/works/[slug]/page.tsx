@@ -2,7 +2,6 @@
 import React from 'react';
 import Aside from '@/app/components/Aside';
 import ChaptersHeader from '@/app/components/ChaptersHeader';
-import ChapterCards from '@/app/components/ChapterCards';
 
 const page = () => {
 	return (
@@ -11,7 +10,6 @@ const page = () => {
 				<Aside />
 				<section className="flex-grow">
 					<ChaptersHeader />
-					<ChapterCards />
 				</section>
 			</main>
 		</div>
