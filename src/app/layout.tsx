@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 		],
 	},
 	twitter: {
-		card: 'summary',
+		card: 'app',
 		title: 'Next.js',
 		description: 'The React Framework for the Web',
 		siteId: '1467726470533754880',
