@@ -190,6 +190,23 @@ const Page = () => {
 	const slug = params.slug;
 	const id = params.id;
 
+	const getChapterName = (slug: string | string[]) => {
+		// slugが文字列配列の場合、最初の要素を使用
+		const slugStr = Array.isArray(slug) ? slug[0] : slug;
+		switch (slugStr) {
+			case 'trial':
+				return 'トライアル編';
+			case 'basic':
+				return '初級編';
+			case 'intermediate':
+				return '中級編';
+			case 'advanced':
+				return '上級編';
+		}
+	};
+
+	const displayChapterName = getChapterName(slug as string);
+
 	useEffect(() => {
 		setCurrentQuestionIndex(Number(id) - 1);
 	}, [id]);
@@ -492,16 +509,20 @@ const Page = () => {
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 								<Button
 									onClick={() => {
-										const tweetText = '';
+										const chapterName = displayChapterName;
+										const practiceTitle =
+											answerPracticesData[currentQuestionIndex].title;
+										const tweetText = `【${chapterName}】${practiceTitle}をクリアしたよ！`;
 										const url = window.location.href;
 										window.open(
-											`https://twitter.com/intent/tweet?text=${tweetText}&url=${url}`,
+											`https://twitter.com/intent/tweet?text=${tweetText}%0A%0A${url}`,
 											'_blank'
 										);
 									}}
 								>
 									<TwitterIcon />
 								</Button>
+
 								<Button
 									onClick={() => {
 										if (currentQuestionIndex < answerPracticesData.length - 1) {
