@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 		creator: '@author_here',
 		images: [
 			{
-				url: 'https://current-user.vercel.app/opengraph-image.jpg',
+				url: 'https://current-user.vercel.app/twitter-image.jpg',
 				width: 1200,
 				height: 630,
 				alt: 'Your alt text',
