@@ -190,7 +190,8 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
+		`https://current-user-back.onrender.com/
+		api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
