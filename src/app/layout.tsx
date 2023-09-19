@@ -24,7 +24,9 @@ export const metadata: Metadata = {
 		card: 'app',
 		title: 'Next.js',
 		description: 'The React Framework for the Web',
+		siteId: '1467726470533754880',
 		creator: '@nextjs',
+		creatorId: '1467726470533754880',
 		images: {
 			url: 'https://current-user.vercel.app/twitter-image.jpg',
 			alt: 'Next.js Logo',
