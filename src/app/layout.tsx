@@ -22,16 +22,12 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'ActiveRecord学習サービス | current_user.',
-		description:
-			'環境構築不要、Ruby on RailsのO/RマッパーであるActiveRecordの学習サービスです。',
-		images: [
-			{
-				url: 'https://current-user.vercel.app/twitter-image.jpg',
-				width: 1200,
-				height: 630,
-			},
-		],
+		title: 'Next.js',
+		description: 'The React Framework for the Web',
+		siteId: '1467726470533754880',
+		creator: '@nextjs',
+		creatorId: '1467726470533754880',
+		images: ['https://current-user.vercel.app/twitter-image.jpg'],
 	},
 };
 
