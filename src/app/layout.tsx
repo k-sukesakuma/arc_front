@@ -21,28 +21,19 @@ export const metadata: Metadata = {
 		],
 	},
 	twitter: {
-		card: 'app',
-		title: 'Next.js',
-		description: 'The React Framework for the Web',
-		siteId: '1467726470533754880',
-		creator: '@nextjs',
-		creatorId: '1467726470533754880',
-		images: {
-			url: 'https://current-user.vercel.app/twitter-image.png',
-			alt: 'Next.js Logo',
-		},
-		app: {
-			name: 'twitter_app',
-			id: {
-				iphone: 'twitter_app://iphone',
-				ipad: 'twitter_app://ipad',
-				googleplay: 'twitter_app://googleplay',
+		card: 'summary_large_image',
+		title: 'ActiveRecord学習サービス | current_user.',
+		description:
+			'環境構築不要、Ruby on RailsのO/RマッパーであるActiveRecordの学習サービスです。',
+		creator: '@saku0suke',
+		images: [
+			{
+				url: 'https://current-user.vercel.app/twitter-image.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'current-user',
 			},
-			url: {
-				iphone: 'https://iphone_url',
-				ipad: 'https://ipad_url',
-			},
-		},
+		],
 	},
 };
 
