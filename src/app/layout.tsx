@@ -9,9 +9,10 @@ export const metadata: Metadata = {
 	description: '環境構築不要のActiveRecord学習サービス',
 	openGraph: {
 		title: 'ActiveRecord学習サービス | current_user',
+		url: 'https://current-user.vercel.app',
 		description:
 			'環境構築不要、Ruby on RailsのO/RマッパーであるActiveRecordの学習サービスです。',
-		images: ['http://localhost:3000/currentuser.jpg'],
+		images: ['https://current-user.vercel.app/opengraph-image.jpg'],
 	},
 	twitter: {
 		card: 'summary_large_image',
@@ -28,10 +29,6 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<meta
-				name="twitter:image"
-				content="https://current-user.vercel.app/twitter-image.jpg"
-			/>
 			<body>
 				<NextAuthProvider>
 					<Toaster position="bottom-center" reverseOrder={true} />
