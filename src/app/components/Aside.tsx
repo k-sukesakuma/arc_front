@@ -16,37 +16,12 @@ import { usePathname } from 'next/navigation';
 
 export default function Aside() {
 	const handleLogin = async () => {
-		toast.promise(
-			signIn('github', { callbackUrl: '/works' }),
-			{
-				loading: 'ログイン中です...',
-				success: 'ログインに成功しました',
-				error: 'ログインに失敗しました',
-			},
-			{
-				success: {
-					duration: 5000,
-					icon: '👍',
-				},
-			}
-		);
+		signIn('github', { callbackUrl: '/works' }),
+			toast.loading('ログインを開始しています...');
 	};
 
 	const handleLogout = async () => {
-		toast.promise(
-			signOut({ callbackUrl: '/' }),
-			{
-				loading: 'ログアウト中です...',
-				success: 'ログアウトに成功しました',
-				error: 'ログアウトに失敗しました',
-			},
-			{
-				success: {
-					duration: 5000,
-					icon: '👍',
-				},
-			}
-		);
+		signOut({ callbackUrl: '/' }), toast.loading('ログアウトをしています...');
 	};
 
 	const { data: session, status } = useSession();
