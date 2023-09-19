@@ -486,14 +486,13 @@ const Page = () => {
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 1 }}>
 						{modalContent
-							? 'おめでとうございます！次の問題に挑戦してみましょう！'
+							? 'おめでとうございます！次の問題にも挑戦してみましょう！'
 							: '不正解です、、！！もう一度自分のコードに間違いがないか確認してみましょう。'}
 						{modalContent && (
 							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 								<Button
 									onClick={() => {
-										const tweetText =
-											'I just completed a challenge on this awesome coding platform!';
+										const tweetText = '';
 										const url = window.location.href;
 										window.open(
 											`https://twitter.com/intent/tweet?text=${tweetText}&url=${url}`,
