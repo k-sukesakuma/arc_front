@@ -5,6 +5,7 @@ import NextAuthProvider from '@/providers/NextAuth';
 import toast, { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
+	metadataBase: new URL('https://current-user.vercel.app/'),
 	title: 'ActiveRecord学習サービス | current_user.',
 	description: '環境構築不要のActiveRecord学習サービス',
 };
