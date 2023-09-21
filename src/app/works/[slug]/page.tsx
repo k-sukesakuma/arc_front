@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Aside from '@/app/components/Aside';
-import ChaptersHeader from '@/app/components/ChaptersHeader';
+import Card from '@/app/components/chapters/Card';
 import Motion from '@/app/components/motionWrapper/motionWrapper';
 const page = () => {
 	return (
@@ -10,7 +10,7 @@ const page = () => {
 				<Aside />
 				<section className="flex-grow">
 					<Motion>
-						<ChaptersHeader />
+						<Card />
 					</Motion>
 				</section>
 			</main>

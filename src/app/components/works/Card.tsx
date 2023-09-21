@@ -5,6 +5,15 @@ import Motion from '@/app/components/motionWrapper/motionWrapper';
 export default function Cards() {
 	return (
 		<div>
+			<header className="px-4 sm:px-6 lg:px-8">
+				<div className="relative mx-auto max-w-[37.5rem] pt-20 text-center pb-20">
+					<div className="flex items-center justify-center">
+						<h1 className="text-3xl font-semibold tracking-tight text-slate-700">
+							問題集一覧
+						</h1>
+					</div>
+				</div>
+			</header>
 			<Motion>
 				<div className="flex justify-around">
 					<div className="flex-1 m-4 p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
