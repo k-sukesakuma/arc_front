@@ -1,8 +1,7 @@
 'use client';
 import React from 'react';
 import Aside from '../components/Aside';
-import WorksHeader from '../components/WorksHeader';
-import Cards from '../components/Cards';
+import Card from '../components/works/Card';
 
 const page = () => {
 	return (
@@ -10,8 +9,7 @@ const page = () => {
 			<main className="flex bg-slate-100 relative">
 				<Aside />
 				<section className="flex-grow">
-					<WorksHeader />
-					<Cards />
+					<Card />
 				</section>
 			</main>
 		</div>
