@@ -2,17 +2,37 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import AppsIcon from '@mui/icons-material/Apps';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
-import Alert from '@mui/material/Alert';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import ArticleIcon from '@mui/icons-material/Article';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
+
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
+
+import Box from '@mui/material/Box';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+
+type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export default function Aside() {
 	const handleLogin = async () => {
@@ -26,38 +46,110 @@ export default function Aside() {
 
 	const { data: session, status } = useSession();
 
+	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
 	return (
 		<div>
-			<></>
 			<aside className="border-r w-20 h-screen bg-slate-100 sticky top-0 flex flex-col items-center py-8 flex-shrink-0 justify-between">
 				<div>
 					<a href="/">
 						<Image src="/logo.png" alt="Logspot" width={40} height={40} />
 					</a>
-					{status !== 'authenticated' ? (
-						<Tooltip title="下からログインしてください" placement="bottom">
-							<IconButton aria-label="delete">
-								<AppsIcon />
-							</IconButton>
-						</Tooltip>
-					) : (
-						<Tooltip title="問題集一覧" placement="bottom">
-							<a href="/works">
-								<IconButton aria-label="delete">
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						{status !== 'authenticated' ? (
+							<Tooltip title="下からログインしてください" placement="right">
+								<IconButton aria-label="works">
 									<AppsIcon />
 								</IconButton>
-							</a>
-						</Tooltip>
-					)}
+							</Tooltip>
+						) : (
+							<Tooltip title="問題集" placement="right">
+								<a href="/works">
+									<IconButton aria-label="works">
+										<AppsIcon />
+									</IconButton>
+								</a>
+							</Tooltip>
+						)}
+					</div>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						{status !== 'authenticated' ? (
+							<Tooltip title="下からログインしてください" placement="right">
+								<IconButton aria-label="chapter">
+									<FormatListBulletedIcon />
+								</IconButton>
+							</Tooltip>
+						) : (
+							<Tooltip title="チャプター" placement="bottom">
+								<IconButton
+									aria-label="chapter"
+									id="fade-button"
+									aria-controls={open ? 'fade-menu' : undefined}
+									aria-haspopup="true"
+									aria-expanded={open ? 'true' : undefined}
+									onClick={handleClick}
+								>
+									<FormatListBulletedIcon />
+								</IconButton>
+							</Tooltip>
+						)}
+						<Menu
+							id="fade-menu"
+							MenuListProps={{
+								'aria-labelledby': 'fade-button',
+							}}
+							anchorEl={anchorEl}
+							open={open}
+							onClose={handleClose}
+							TransitionComponent={Fade}
+						>
+							<MenuItem onClick={handleClose}>
+								<Link href="/works/trial">トライアル編</Link>
+							</MenuItem>
+							<MenuItem onClick={handleClose}>
+								<Link href="/works/basic">初級編</Link>
+							</MenuItem>{' '}
+							<MenuItem onClick={handleClose}>
+								<Link href="/works/intermediate">中級編</Link>
+							</MenuItem>
+						</Menu>
+					</div>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					></div>
 				</div>
+
 				{status !== 'authenticated' ? (
-					<Tooltip title="ログイン" placement="top">
+					<Tooltip title="ログイン" placement="bottom">
 						<IconButton aria-label="delete" onClick={handleLogin}>
 							<LoginIcon />
 						</IconButton>
 					</Tooltip>
 				) : (
-					<Tooltip title="ログアウト" placement="top">
+					<Tooltip title="ログアウト" placement="bottom">
 						<IconButton onClick={handleLogout}>
 							<LogoutIcon />
 						</IconButton>
