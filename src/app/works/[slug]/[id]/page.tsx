@@ -161,6 +161,8 @@ const Page = () => {
 	// --------------------------答え合わせ--------------------------------------
 	const [answer, setAnswer] = useState('');
 	const [modalContent, setModalContent] = useState(false);
+
+	const [message, setMessage] = useState('');
 	const executeAnswer = () => {
 		if (editorRef.current) {
 			const code = editorRef.current.getValue({
@@ -232,6 +234,12 @@ const Page = () => {
 	useEffect(() => {
 		if (answersData) {
 			setModalContent(answersData.result);
+
+			setMessage(
+				modalContent
+					? 'おめでとうございます！次の問題にも挑戦してみましょう！'
+					: '不正解です、、！！もう一度自分のコードに間違いがないか確認してみましょう。'
+			);
 		}
 	}, [answersData, executionsError]);
 
@@ -361,8 +369,8 @@ const Page = () => {
 										<Image
 											src="/relation.png"
 											alt="relation"
-											width={525}
-											height={455}
+											width={575}
+											height={530}
 											style={{
 												margin: 'auto',
 												display: 'block',
