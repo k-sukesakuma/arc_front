@@ -143,13 +143,13 @@ export default function Aside() {
 				</div>
 
 				{status !== 'authenticated' ? (
-					<Tooltip title="ログイン" placement="bottom">
+					<Tooltip title="ログインする" placement="bottom">
 						<IconButton aria-label="delete" onClick={handleLogin}>
 							<LoginIcon />
 						</IconButton>
 					</Tooltip>
 				) : (
-					<Tooltip title="ログアウト" placement="bottom">
+					<Tooltip title="ログアウトする" placement="bottom">
 						<IconButton onClick={handleLogout}>
 							<LogoutIcon />
 						</IconButton>
