@@ -337,7 +337,7 @@ const Page = () => {
 											aria-label="lab API tabs example"
 										>
 											<Tab label="ユーザー一覧" value="1" />
-											<Tab label="ER図" value="2" />
+											<Tab label="スキーマ" value="2" />
 											<Tab label="リレーション" value="4" />
 											<Tab label="実行結果" value="3" />
 										</TabList>
@@ -346,16 +346,24 @@ const Page = () => {
 										<DbTable />
 									</TabPanel>
 									<TabPanel value="2" sx={{ height: 488 }}>
-										<Image src="/db.png" alt="db" width={600} height={680} />
+										<Image
+											src="/db.png"
+											alt="db"
+											width={495}
+											height={295}
+											style={{
+												margin: 'auto',
+												display: 'block',
+											}}
+										/>
 									</TabPanel>
 									<TabPanel value="4" sx={{ height: 488 }}>
 										<Image
 											src="/relation.png"
 											alt="relation"
-											width={460}
-											height={370}
+											width={525}
+											height={455}
 											style={{
-												borderRadius: '1%',
 												margin: 'auto',
 												display: 'block',
 											}}
