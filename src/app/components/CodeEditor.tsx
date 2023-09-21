@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
 import CircularProgress from '@mui/material/CircularProgress';
