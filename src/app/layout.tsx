@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import NextAuthProvider from '@/providers/NextAuth';
 
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://current-user.vercel.app/'),
