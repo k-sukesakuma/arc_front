@@ -32,7 +32,7 @@ function createData(name: string, email: string, password: string): Data {
 }
 
 const rows = [
-	createData('John', 'john1@example.com', 'xxxxxxxxxx'),
+	createData('John', 'john@example.com', 'xxxxxxxxxx'),
 	createData('Emily', 'emily@example.com', 'xxxxxxxxxx'),
 	createData('Steve', 'steve@example.com', 'xxxxxxxxxx'),
 	createData('Michael', 'michael@example.com', 'xxxxxxxxxx'),
