@@ -18,7 +18,7 @@ export default function Cards() {
 						</p>
 						<Link
 							href="/works/trial"
-							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-500"
+							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-800 rounded-lg hover:bg-slate-500"
 						>
 							こちらから
 							<svg
@@ -49,7 +49,7 @@ export default function Cards() {
 						</p>
 						<Link
 							href="/works/basic"
-							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-700"
+							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-800 rounded-lg hover:bg-slate-500"
 						>
 							こちらから
 							<svg
@@ -82,7 +82,7 @@ export default function Cards() {
 						</p>
 						<Link
 							href="/works/intermediate"
-							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-800 rounded-lg hover:bg-gray-700"
+							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-800 rounded-lg hover:bg-slate-500"
 						>
 							こちらから
 							<svg
