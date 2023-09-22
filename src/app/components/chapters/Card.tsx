@@ -28,10 +28,6 @@ export default function WorksHeader() {
 		fetcher
 	);
 
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
-
 	return (
 		<header className="px-4 sm:px-6 lg:px-8">
 			<div className="relative mx-auto max-w-[37.5rem] pt-20 text-center pb-20">
