@@ -38,8 +38,6 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 import TwitterIcon from '@mui/icons-material/Twitter';
 
-import { useSWRConfig } from 'swr';
-
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
