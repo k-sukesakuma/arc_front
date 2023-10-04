@@ -465,7 +465,12 @@ const Page = () => {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<Typography id="modal-modal-title" variant="h6" component="h1">
+					<Typography
+						id="modal-modal-title"
+						variant="h6"
+						component="h1"
+						className="font-semibold"
+					>
 						{modalContent ? '正解👍' : '不正解🏃‍♂️'}
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 1 }}>
