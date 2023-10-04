@@ -357,8 +357,8 @@ const Page = () => {
 										<Image
 											src="/db.png"
 											alt="db"
-											width={495}
-											height={295}
+											width={470}
+											height={270}
 											style={{
 												margin: 'auto',
 												display: 'block',
@@ -369,8 +369,8 @@ const Page = () => {
 										<Image
 											src="/relation.png"
 											alt="relation"
-											width={575}
-											height={530}
+											width={495}
+											height={450}
 											style={{
 												margin: 'auto',
 												display: 'block',

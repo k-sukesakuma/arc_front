@@ -16,16 +16,40 @@ export default function CodeEditor({
 		fontSize: 16,
 	};
 
+	const handleEditorDidMount = (editor: any, monaco: any) => {
+		monaco.editor.defineTheme('myTheme', {
+			base: 'vs-dark',
+			inherit: true,
+			rules: [
+				{ token: 'identifier', foreground: '#6099C8' },
+				{ token: 'identifier.function', foreground: '#DCDCAA' },
+				{ token: 'type', foreground: '#1AAFB0' },
+				{ token: 'lineNumbers', foreground: '#9CDCFE' },
+				{ token: 'keyword.operator', foreground: '#FF0000' },
+			],
+			colors: {
+				'editor.foreground': '#6099C8',
+				'editorLineNumber.foreground': '#999999',
+				'editor.selectionBackground': '#BDD5FC',
+				'editor.inactiveSelectionBackground': '#D4D4D4',
+			},
+		});
+
+		// テーマの適用
+		editor.updateOptions({ theme: 'myTheme' });
+
+		onMount(editor);
+	};
+
 	return (
 		<Editor
-			theme="vs-light"
 			height="440px"
 			defaultLanguage="ruby"
-			defaultValue=""
+			defaultValue={'\n'.repeat(16)}
 			loading={<CircularProgress style={{ color: 'grey' }} />}
 			className=" overflow-hidden"
 			options={options}
-			onMount={onMount}
+			onMount={handleEditorDidMount}
 		/>
 	);
 }
