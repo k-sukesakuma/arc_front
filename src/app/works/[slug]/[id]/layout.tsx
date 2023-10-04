@@ -1,8 +1,6 @@
-import Layout from '@/app/layout';
-import React from 'react';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
 	metadataBase: new URL('https://current-user.vercel.app/'),
 	title: 'ActiveRecord学習サービス | current_user.',
 	description: '環境構築不要のActiveRecord学習サービス',
@@ -17,4 +15,4 @@ export const metadata: Metadata = {
 	},
 };
 
-export default Layout;
+export default Metadata;
