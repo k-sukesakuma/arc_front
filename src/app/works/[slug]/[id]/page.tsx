@@ -527,8 +527,9 @@ const Page = () => {
 					</Typography>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						<div
-							className="bg-black text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
+							className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 							style={{
+								backgroundColor: '#1E1E1E',
 								maxHeight: '200px',
 								overflowY: 'auto',
 								overflowX: 'auto',
