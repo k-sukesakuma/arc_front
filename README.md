@@ -1,7 +1,10 @@
 ## ライブラリ
 
 - @monaco-editor/react
+- @mui/icons-material
 - axios
 - swr
 - next-auth
-- @mui/icons-material
+- eslint
+- framer-motion
+- react-hot-toast

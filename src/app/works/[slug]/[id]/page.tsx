@@ -328,7 +328,7 @@ const Page = () => {
 											</div>
 										</TabList>
 									</Box>
-									<TabPanel value="1">
+									<TabPanel value="1" sx={{ height: 478 }}>
 										<CodeEditor onMount={handleEditorDidMount} />
 									</TabPanel>
 								</TabContext>
@@ -351,7 +351,7 @@ const Page = () => {
 									<TabPanel value="1">
 										<DbTable />
 									</TabPanel>
-									<TabPanel value="2" sx={{ height: 488 }}>
+									<TabPanel value="2" sx={{ height: 478 }}>
 										<Image
 											src="/db.png"
 											alt="db"
@@ -363,7 +363,7 @@ const Page = () => {
 											}}
 										/>
 									</TabPanel>
-									<TabPanel value="4" sx={{ height: 488 }}>
+									<TabPanel value="4" sx={{ height: 478 }}>
 										<Image
 											src="/relation.png"
 											alt="relation"
@@ -375,7 +375,7 @@ const Page = () => {
 											}}
 										/>
 									</TabPanel>
-									<TabPanel value="3">
+									<TabPanel value="3" sx={{ height: 478 }}>
 										{executionsData && 'result' in executionsData ? (
 											<div className="height">{executionsData.result}</div>
 										) : (
