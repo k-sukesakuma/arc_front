@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import NextAuthProvider from '@/providers/NextAuth';
 import GoogleAnalytics from './components/GoogleAnalytics';
 
+import { Analytics } from '@vercel/analytics/react';
+
 import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
@@ -34,6 +36,7 @@ export default function RootLayout({
 					{children}
 				</NextAuthProvider>
 			</body>
+			<Analytics />
 		</html>
 	);
 }
