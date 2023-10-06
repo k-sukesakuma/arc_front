@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import NextAuthProvider from '@/providers/NextAuth';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 import { Toaster } from 'react-hot-toast';
 
@@ -27,6 +28,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
+				<GoogleAnalytics />
 				<NextAuthProvider>
 					<Toaster position="bottom-center" reverseOrder={true} />
 					{children}
