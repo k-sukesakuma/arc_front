@@ -1,7 +1,5 @@
 import NextAuth from 'next-auth';
-
 import GithubProvider from 'next-auth/providers/github';
-import axios from 'axios';
 
 const handler = NextAuth({
 	providers: [

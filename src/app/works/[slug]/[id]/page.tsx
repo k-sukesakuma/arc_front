@@ -375,12 +375,14 @@ const Page = () => {
 											}}
 										/>
 									</TabPanel>
-									<TabPanel value="3" sx={{ height: 478 }}>
-										{executionsData && 'result' in executionsData ? (
+									<TabPanel value="3">
+										{executionsData &&
+										typeof executionsData === 'object' &&
+										'result' in executionsData ? (
 											<div className="height">{executionsData.result}</div>
 										) : (
 											<Paper sx={{ width: '100%' }}>
-												<TableContainer sx={{ height: 440 }}>
+												<TableContainer sx={{ height: 430 }}>
 													<Table stickyHeader aria-label="sticky table">
 														<TableHead>
 															{executionsData &&
@@ -405,7 +407,11 @@ const Page = () => {
 																	page * rowsPerPage + rowsPerPage
 																)
 																.map((row) => {
-																	if (row && typeof row === 'object') {
+																	if (
+																		row &&
+																		typeof row === 'object' &&
+																		!Array.isArray(row)
+																	) {
 																		return (
 																			<TableRow
 																				hover
@@ -421,6 +427,19 @@ const Page = () => {
 																						</TableCell>
 																					);
 																				})}
+																			</TableRow>
+																		);
+																	} else if (
+																		typeof row === 'string' ||
+																		typeof row === 'number'
+																	) {
+																		return (
+																			<TableRow
+																				hover
+																				role="checkbox"
+																				tabIndex={-1}
+																			>
+																				<TableCell>{row}</TableCell>
 																			</TableRow>
 																		);
 																	}
