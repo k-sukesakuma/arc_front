@@ -435,6 +435,7 @@ const Page = () => {
 																	) {
 																		return (
 																			<TableRow
+																				key={1}
 																				hover
 																				role="checkbox"
 																				tabIndex={-1}
