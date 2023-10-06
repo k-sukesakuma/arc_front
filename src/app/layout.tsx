@@ -35,8 +35,8 @@ export default function RootLayout({
 					<Toaster position="bottom-center" reverseOrder={true} />
 					{children}
 				</NextAuthProvider>
+				<Analytics />
 			</body>
-			<Analytics />
 		</html>
 	);
 }
