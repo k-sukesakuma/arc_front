@@ -1,5 +1,5 @@
 'use client';
-
+import SearchMethod from './SearchMethod';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import ArticleIcon from '@mui/icons-material/Article';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
 
@@ -83,7 +84,7 @@ export default function Aside() {
 								</IconButton>
 							</Tooltip>
 						) : (
-							<Tooltip title="チャプター" placement="bottom">
+							<Tooltip title="チャプター" placement="right">
 								<IconButton
 									aria-label="chapter"
 									id="fade-button"
@@ -117,6 +118,7 @@ export default function Aside() {
 							</MenuItem>
 						</Menu>
 					</div>
+					<SearchMethod />
 					<div
 						style={{
 							display: 'flex',
