@@ -52,6 +52,7 @@ export default function QiitaArticle() {
 			<div className="flex flex-wrap justify-around">
 				{articles.map((article: any) => (
 					<div
+						key={article.id}
 						className="m-4 p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 						style={{ width: '47%' }}
 					>
