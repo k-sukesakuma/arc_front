@@ -471,7 +471,9 @@ const Page = () => {
 																				role="checkbox"
 																				tabIndex={-1}
 																			>
-																				<TableCell>{row}</TableCell>
+																				<TableCell style={{ fontSize: '30px' }}>
+																					{row}
+																				</TableCell>
 																			</TableRow>
 																		);
 																	}
