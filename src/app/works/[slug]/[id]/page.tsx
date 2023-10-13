@@ -93,24 +93,6 @@ function createData(
 	return { name, code, population, size, density };
 }
 
-const rows = [
-	createData('India', 'IN', 1324171354, 3287263),
-	createData('China', 'CN', 1403500365, 9596961),
-	createData('Italy', 'IT', 60483973, 301340),
-	createData('United States', 'US', 327167434, 9833520),
-	createData('Canada', 'CA', 37602103, 9984670),
-	createData('Australia', 'AU', 25475400, 7692024),
-	createData('Germany', 'DE', 83019200, 357578),
-	createData('Ireland', 'IE', 4857000, 70273),
-	createData('Mexico', 'MX', 126577691, 1972550),
-	createData('Japan', 'JP', 126317000, 377973),
-	createData('France', 'FR', 67022000, 640679),
-	createData('United Kingdom', 'GB', 67545757, 242495),
-	createData('Russia', 'RU', 146793744, 17098246),
-	createData('Nigeria', 'NG', 200962417, 923768),
-	createData('Brazil', 'BR', 210147125, 8515767),
-];
-
 const style = {
 	position: 'absolute' as 'absolute',
 	top: '50%',
@@ -212,6 +194,15 @@ const Page = () => {
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
 			? `https://current-user-back.onrender.com/api/v1/executions?active_record_string=${encodeURIComponent(
+					code
+			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
+			: null,
+		fetcher
+	);
+
+	const { data: sqlData, error: sqlError } = useSWR(
+		code
+			? `https://current-user-back.onrender.com/api/v1/executions/sql?active_record_string=${encodeURIComponent(
 					code
 			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
@@ -345,45 +336,85 @@ const Page = () => {
 											<Tab label="ユーザー一覧" value="1" />
 											<Tab label="スキーマ" value="2" />
 											<Tab label="リレーション" value="4" />
-											<Tab label="実行結果" value="3" />
+											<Tab label="変換SQL / 実行結果" value="3" />
 										</TabList>
 									</Box>
 									<TabPanel value="1">
 										<DbTable />
 									</TabPanel>
 									<TabPanel value="2" sx={{ height: 478 }}>
-										<Image
-											src="/db.png"
-											alt="db"
-											width={470}
-											height={270}
+										<div
+											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 											style={{
-												margin: 'auto',
-												display: 'block',
+												backgroundColor: '#1E1E1E',
+												maxHeight: '440px',
+												overflowY: 'auto',
+												overflowX: 'auto',
 											}}
-										/>
+										>
+											<Image
+												src="/db.png"
+												alt="db"
+												width={470}
+												height={270}
+												style={{
+													margin: 'auto',
+													display: 'block',
+												}}
+											/>
+										</div>
 									</TabPanel>
 									<TabPanel value="4" sx={{ height: 478 }}>
-										<Image
-											src="/relation.png"
-											alt="relation"
-											width={495}
-											height={450}
+										<div
+											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 											style={{
-												margin: 'auto',
-												display: 'block',
+												backgroundColor: '#1E1E1E',
+												maxHeight: '440px',
+												overflowY: 'auto',
+												overflowX: 'auto',
 											}}
-										/>
+										>
+											<Image
+												src="/relation.png"
+												alt="relation"
+												width={495}
+												height={450}
+												style={{
+													margin: 'auto',
+													display: 'block',
+												}}
+											/>
+										</div>
 									</TabPanel>
 									<TabPanel value="3">
+										<div
+											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm mb-2"
+											style={{
+												backgroundColor: '#1E1E1E',
+												height: '100px',
+												overflowY: 'auto',
+												overflowX: 'auto',
+												whiteSpace: 'nowrap',
+											}}
+											dangerouslySetInnerHTML={{
+												__html: sqlData
+													? sqlData.sql.replace(/;/g, ';<br />')
+													: '',
+											}}
+										/>
+
 										{executionsData &&
 										typeof executionsData === 'object' &&
 										'result' in executionsData ? (
 											<div className="height">{executionsData.result}</div>
 										) : (
 											<Paper sx={{ width: '100%' }}>
-												<TableContainer sx={{ height: 430 }}>
-													<Table stickyHeader aria-label="sticky table">
+												<TableContainer sx={{ maxHeight: 323 }}>
+													<Table
+														stickyHeader
+														aria-label="sticky table"
+														sx={{ height: 323 }}
+													>
 														<TableHead>
 															{executionsData &&
 																(Array.isArray(executionsData)
