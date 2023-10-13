@@ -17,7 +17,7 @@ const fetcher = (url: string) => {
 
 export default function QiitaArticle() {
 	const { data, error } = useSWR(
-		'https://qiita.com/api/v2/items?query=title:ActiveRecord&per_page=50',
+		'https://qiita.com/api/v2/items?query=title:ActiveRecord&per_page=100',
 		fetcher,
 		{ dedupingInterval: 600000 }
 	);
@@ -49,22 +49,21 @@ export default function QiitaArticle() {
 					</div>
 				</div>
 			</header>
-			<div className="flex flex-wrap justify-around">
+			<div className="flex flex-wrap justify-around mb-5">
 				{articles.map((article: any) => (
 					<div
 						key={article.id}
-						className="m-4 p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+						className="m-4 p-8 bg-white border border-gray-200 rounded-lg shadow-md"
 						style={{ width: '47%' }}
 					>
 						<div key={article.id}>
-							<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-								<SiQiita size={50} />
+							<h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+								<SiQiita size={40} />
 								{article.title}
 							</h5>
-							<p className="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
 							<Link
 								href={article.url}
-								className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-800 rounded-lg hover:bg-slate-500"
+								className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-sky-800 rounded-lg hover:bg-slate-300"
 								target="_blank"
 							>
 								詳しく見る
