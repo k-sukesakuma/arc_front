@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import ArticleIcon from '@mui/icons-material/Article';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
 import Box from '@mui/material/Box';
 
@@ -54,13 +55,13 @@ export default function SearchMethod() {
 			{status !== 'authenticated' ? (
 				<Tooltip title="下からログインしてください" placement="right">
 					<IconButton aria-label="chapter">
-						<ArticleIcon />
+						<ManageSearchIcon />
 					</IconButton>
 				</Tooltip>
 			) : (
 				<Tooltip title="メソッド検索" placement="right">
 					<IconButton onClick={handleOpen}>
-						<ArticleIcon />
+						<ManageSearchIcon />
 					</IconButton>
 				</Tooltip>
 			)}

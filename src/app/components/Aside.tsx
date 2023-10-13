@@ -1,5 +1,6 @@
 'use client';
 import SearchMethod from './SearchMethod';
+import ArticleLink from './ArticleLink';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -119,6 +120,7 @@ export default function Aside() {
 						</Menu>
 					</div>
 					<SearchMethod />
+					<ArticleLink />
 					<div
 						style={{
 							display: 'flex',
