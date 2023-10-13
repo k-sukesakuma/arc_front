@@ -591,6 +591,7 @@ const Page = () => {
 								maxHeight: '200px',
 								overflowY: 'auto',
 								overflowX: 'auto',
+								whiteSpace: 'nowrap',
 							}}
 						>
 							<p className="mt-2 text-xl text-slate-200">
