@@ -13,7 +13,9 @@ const Footer = () => {
 						<Link href="/privacy_policy">プライバシーポリシー</Link>
 					</p>
 					<p className="mt-2 font-bold text-base leading-7 text-slate-600 ">
-						お問い合わせ
+						<Link href="https://twitter.com/saku0suke" target="_blank">
+							お問い合わせ
+						</Link>
 					</p>
 				</div>
 			</div>
