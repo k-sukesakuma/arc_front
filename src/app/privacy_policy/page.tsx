@@ -17,7 +17,7 @@ export default function TermOfService() {
 							</div>
 						</div>
 					</header>
-					<div className="shadow-md px-6 py-4 mx-20 rounded-lg bg-white">
+					<div className="shadow-md px-6 py-4 mx-20 rounded-lg bg-white mb-8">
 						<div>
 							<h1 className="text-xl font-bold mb-2">お客様から取得する情報</h1>
 							<h2>当社は、お客様から以下の情報を取得します。</h2>
