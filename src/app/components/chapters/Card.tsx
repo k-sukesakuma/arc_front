@@ -38,7 +38,7 @@ export default function WorksHeader() {
 				</div>
 			</div>
 			<div>
-				<div className="shadow-md px-6 py-4 my-5 mx-20 rounded-lg bg-white">
+				<div className="shadow-md px-6 py-4 mx-20 rounded-lg bg-white">
 					<div className="text-xl font-bold text-gray-900 px-3 mb-2">
 						【全{data?.chapters?.length}問】 {data?.description}
 					</div>
