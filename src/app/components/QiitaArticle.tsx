@@ -63,7 +63,7 @@ export default function QiitaArticle() {
 							</h5>
 							<Link
 								href={article.url}
-								className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-sky-800 rounded-lg hover:bg-slate-300"
+								className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-slate-300"
 								target="_blank"
 							>
 								詳しく見る
