@@ -188,13 +188,13 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`https://current-user.vercel.app/api/v1/practices?slug=${slug}`,
+		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? `https://current-user.vercel.app/api/v1/executions?active_record_string=${encodeURIComponent(
+			? `https://current-user-back.onrender.com/api/v1/executions?active_record_string=${encodeURIComponent(
 					code
 			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
@@ -203,7 +203,7 @@ const Page = () => {
 
 	const { data: sqlData, error: sqlError } = useSWR(
 		code
-			? `https://current-user.vercel.app/api/v1/executions/sql?active_record_string=${encodeURIComponent(
+			? `https://current-user-back.onrender.com/api/v1/executions/sql?active_record_string=${encodeURIComponent(
 					code
 			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
@@ -212,7 +212,7 @@ const Page = () => {
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? `https://current-user.vercel.app/api/v1/executions/check?active_record_string=${encodeURIComponent(
+			? `https://current-user-back.onrender.com/api/v1/executions/check?active_record_string=${encodeURIComponent(
 					answer
 			  )}&practice_id=${
 					answerPracticesData[currentQuestionIndex].id
