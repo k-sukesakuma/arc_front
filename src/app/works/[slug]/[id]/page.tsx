@@ -154,10 +154,10 @@ const Page = () => {
 		}
 	};
 
-	const [open2, setOpen2] = useState(false);
+	const [openAnswer, setOpenAnswer] = useState(false);
 
-	const handleOpen2 = () => setOpen2(true);
-	const handleClose2 = () => setOpen2(false);
+	const handleOpenAnswer = () => setOpenAnswer(true);
+	const handleCloseAnswer = () => setOpenAnswer(false);
 
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -253,9 +253,9 @@ const Page = () => {
 	const handleClose = () => setOpen(false);
 	const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 		color: theme.palette.getContrastText(grey[50]),
-		backgroundColor: grey[50],
+		backgroundColor: 'white',
 		'&:hover': {
-			backgroundColor: blueGrey[100],
+			backgroundColor: '#E6E6E6',
 		},
 	}));
 	const [value, setValue] = useState('1');
@@ -502,6 +502,7 @@ const Page = () => {
 									executeAnswer();
 									handleOpen();
 								}}
+								style={{ backgroundColor: 'white' }}
 							>
 								答え合わせ
 							</ColorButton>
@@ -510,7 +511,8 @@ const Page = () => {
 							<ColorButton
 								variant="contained"
 								startIcon={<ManageSearchIcon />}
-								onClick={handleOpen2}
+								onClick={handleOpenAnswer}
+								style={{ backgroundColor: 'white' }}
 							>
 								正解を見る
 							</ColorButton>
@@ -576,8 +578,8 @@ const Page = () => {
 				</Box>
 			</Modal>
 			<Modal
-				open={open2}
-				onClose={handleClose2}
+				open={openAnswer}
+				onClose={handleCloseAnswer}
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
 			>
