@@ -502,6 +502,7 @@ const Page = () => {
 									executeAnswer();
 									handleOpen();
 								}}
+								style={{ backgroundColor: 'white' }}
 							>
 								答え合わせ
 							</ColorButton>
@@ -511,6 +512,7 @@ const Page = () => {
 								variant="contained"
 								startIcon={<ManageSearchIcon />}
 								onClick={handleOpenAnswer}
+								style={{ backgroundColor: 'white' }}
 							>
 								正解を見る
 							</ColorButton>
