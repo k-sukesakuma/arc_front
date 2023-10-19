@@ -8,43 +8,50 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 interface Column {
-	id: 'name' | 'email' | 'password';
+	id: 'id' | 'name' | 'email' | 'password';
 	label: string;
 	minWidth?: number;
 	align?: 'right';
-	format?: (value: string) => string;
+	format?: (value: number | string) => string;
 }
 
 const columns: readonly Column[] = [
-	{ id: 'name', label: 'name', minWidth: 100 },
-	{ id: 'email', label: 'email', minWidth: 100 },
-	{ id: 'password', label: 'password', minWidth: 100 },
+	{ id: 'id', label: 'ID', minWidth: 50 },
+	{ id: 'name', label: 'Name', minWidth: 100 },
+	{ id: 'email', label: 'Email', minWidth: 100 },
+	{ id: 'password', label: 'Password', minWidth: 100 },
 ];
 
 interface Data {
+	id: number;
 	name: string;
 	email: string;
 	password: string;
 }
 
-function createData(name: string, email: string, password: string): Data {
-	return { name, email, password };
+function createData(
+	id: number,
+	name: string,
+	email: string,
+	password: string
+): Data {
+	return { id, name, email, password };
 }
 
 const rows = [
-	createData('John', 'john@example.com', 'xxxxxxxxxx'),
-	createData('Emily', 'emily@example.com', 'xxxxxxxxxx'),
-	createData('Steve', 'steve@example.com', 'xxxxxxxxxx'),
-	createData('Michael', 'michael@example.com', 'xxxxxxxxxx'),
-	createData('Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
-	createData('George', 'george@example.com', 'xxxxxxxxxx'),
-	createData('Lily', 'lily@example.com', 'xxxxxxxxxx'),
-	createData('Dudley', 'dudley@example.com', 'xxxxxxxxxx'),
-	createData('Luna', 'luna@example.com', 'xxxxxxxxxx'),
-	createData('Bill', 'bill@example.com', 'xxxxxxxxxx'),
+	createData(1, 'John', 'john@example.com', 'xxxxxxxxxx'),
+	createData(2, 'Emily', 'emily@example.com', 'xxxxxxxxxx'),
+	createData(3, 'Steve', 'steve@example.com', 'xxxxxxxxxx'),
+	createData(4, 'Michael', 'michael@example.com', 'xxxxxxxxxx'),
+	createData(5, 'Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
+	createData(6, 'George', 'george@example.com', 'xxxxxxxxxx'),
+	createData(7, 'Lily', 'lily@example.com', 'xxxxxxxxxx'),
+	createData(8, 'Dudley', 'dudley@example.com', 'xxxxxxxxxx'),
+	createData(9, 'Luna', 'luna@example.com', 'xxxxxxxxxx'),
+	createData(10, 'Bill', 'bill@example.com', 'xxxxxxxxxx'),
 ];
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable({ user_id }: { user_id: number }) {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -70,7 +77,16 @@ export default function StickyHeadTable() {
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((row) => {
 								return (
-									<TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
+									<TableRow
+										hover
+										role="checkbox"
+										tabIndex={-1}
+										key={row.id}
+										style={{
+											backgroundColor:
+												row.id === user_id ? '#E6E6E6' : 'inherit',
+										}}
+									>
 										{columns.map((column) => {
 											const value = row[column.id];
 											return (

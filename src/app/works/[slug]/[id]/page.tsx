@@ -342,7 +342,12 @@ const Page = () => {
 										</TabList>
 									</Box>
 									<TabPanel value="1">
-										<DbTable />
+										<DbTable
+											user_id={
+												answerPracticesData &&
+												answerPracticesData[currentQuestionIndex].user_id
+											}
+										/>
 									</TabPanel>
 									<TabPanel value="2" sx={{ height: 478 }}>
 										<div
