@@ -357,7 +357,6 @@ const Page = () => {
 												maxHeight: '440px',
 												overflowY: 'auto',
 												overflowX: 'auto',
-												maxWidth: '100px',
 											}}
 										>
 											<Image
