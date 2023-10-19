@@ -33,13 +33,13 @@ export default function Description() {
 	const markdownContent = '## コンテンツ';
 	return (
 		<div>
-			<Tooltip title="ActiveRecordとは?" placement="right-start">
-				<div className="mt-1.3">
+			<Tooltip title="ActiveRecordとは?" placement="top-start">
+				<div className="mt-1.3 ml-10">
 					<IconButton aria-label="delete">
 						<HelpCenterIcon
 							style={{
 								color: 'gray',
-								fontSize: '35px',
+								fontSize: '32.5px',
 							}}
 							onClick={handleOpen}
 						/>
@@ -68,7 +68,7 @@ export default function Description() {
 								<h2 className="text-2xl font-bold mt-2 mb-2">
 									ActiveRecordとは?
 								</h2>
-								<hr className="mt-1 mb- rounded-lg" />
+								<hr className="mt-1 mb-2 rounded-lg" />
 								<p className="mb-8">
 									ActiveRecordとは、Ruby on
 									Railsで用いられているRuby言語向けのO/Rマッピングの名称のことを指します。
@@ -116,8 +116,8 @@ export default function Description() {
 									</p>
 									<DescriptionTable />
 								</p>
-								<h2 className="text-2xl font-bold mt-2 mb-2">まとめ</h2>
-								<hr className="mt-1 mb- rounded-lg" />
+								<h2 className="text-2xl font-bold mt-2 mb-2">おわりに</h2>
+								<hr className="mt-1 mb-2 rounded-lg" />
 								<p className="mb-5">
 									ActiveRecordの仕組みと変換されるSQLを学習して、さらにスキルアップしましょう!
 									<br></br>
