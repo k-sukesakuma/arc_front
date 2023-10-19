@@ -188,13 +188,13 @@ const Page = () => {
 	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
-		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
+		`https://current-user.vercel.app/api/v1/practices?slug=${slug}`,
 		fetcher
 	);
 
 	const { data: executionsData, error: executionsError } = useSWR(
 		code
-			? `https://current-user-back.onrender.com/api/v1/executions?active_record_string=${encodeURIComponent(
+			? `https://current-user.vercel.app/api/v1/executions?active_record_string=${encodeURIComponent(
 					code
 			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
@@ -203,7 +203,7 @@ const Page = () => {
 
 	const { data: sqlData, error: sqlError } = useSWR(
 		code
-			? `https://current-user-back.onrender.com/api/v1/executions/sql?active_record_string=${encodeURIComponent(
+			? `https://current-user.vercel.app/api/v1/executions/sql?active_record_string=${encodeURIComponent(
 					code
 			  )}&user_id=${answerPracticesData[currentQuestionIndex].user_id}`
 			: null,
@@ -212,7 +212,7 @@ const Page = () => {
 
 	const { data: answersData, error: answersError } = useSWR(
 		answer
-			? `https://current-user-back.onrender.com/api/v1/executions/check?active_record_string=${encodeURIComponent(
+			? `https://current-user.vercel.app/api/v1/executions/check?active_record_string=${encodeURIComponent(
 					answer
 			  )}&practice_id=${
 					answerPracticesData[currentQuestionIndex].id
@@ -357,6 +357,7 @@ const Page = () => {
 												maxHeight: '440px',
 												overflowY: 'auto',
 												overflowX: 'auto',
+												maxWidth: '100px',
 											}}
 										>
 											<Image
@@ -399,6 +400,7 @@ const Page = () => {
 											style={{
 												backgroundColor: '#1E1E1E',
 												height: '100px',
+												width: '600px',
 												overflowY: 'auto',
 												overflowX: 'auto',
 												whiteSpace: 'nowrap',
@@ -420,20 +422,29 @@ const Page = () => {
 													<Table
 														stickyHeader
 														aria-label="sticky table"
-														sx={{ height: 323 }}
+														sx={{ maxHight: 323, maxWidth: '' }}
 													>
 														<TableHead>
 															{executionsData &&
-																(Array.isArray(executionsData)
-																	? executionsData.length > 0
-																	: Object.keys(executionsData).length > 0) &&
+																((Array.isArray(executionsData) &&
+																	executionsData.length > 0) ||
+																	(typeof executionsData === 'object' &&
+																		Object.keys(executionsData).length > 0)) &&
 																Object.keys(
 																	Array.isArray(executionsData)
 																		? executionsData[0]
 																		: executionsData
-																).map((key) => (
-																	<TableCell key={key}>{key}</TableCell>
-																))}
+																).map((key) => {
+																	if (
+																		Array.isArray(executionsData) &&
+																		executionsData.every(
+																			(item) => typeof item === 'string'
+																		)
+																	) {
+																		return null;
+																	}
+																	return <TableCell key={key}>{key}</TableCell>;
+																})}
 														</TableHead>
 														<TableBody>
 															{(Array.isArray(executionsData)
@@ -472,15 +483,8 @@ const Page = () => {
 																		typeof row === 'number'
 																	) {
 																		return (
-																			<TableRow
-																				key={1}
-																				hover
-																				role="checkbox"
-																				tabIndex={-1}
-																			>
-																				<TableCell style={{ fontSize: '30px' }}>
-																					{row}
-																				</TableCell>
+																			<TableRow key={1}>
+																				<TableCell key={1}>{row}</TableCell>
 																			</TableRow>
 																		);
 																	}
