@@ -37,6 +37,7 @@ import { useRouter } from 'next/navigation';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 import TwitterIcon from '@mui/icons-material/Twitter';
+import Description from '@/app/components/Description';
 
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -100,7 +101,7 @@ const style = {
 	transform: 'translate(-50%, -50%)',
 	width: 400,
 	bgcolor: 'background.paper',
-	border: '2px solid #000',
+	border: '1px solid #000',
 	boxShadow: 24,
 	p: 4,
 };
@@ -337,10 +338,16 @@ const Page = () => {
 											<Tab label="スキーマ" value="2" />
 											<Tab label="リレーション" value="4" />
 											<Tab label="変換SQL / 実行結果" value="3" />
+											<Description />
 										</TabList>
 									</Box>
 									<TabPanel value="1">
-										<DbTable />
+										<DbTable
+											user_id={
+												answerPracticesData &&
+												answerPracticesData[currentQuestionIndex].user_id
+											}
+										/>
 									</TabPanel>
 									<TabPanel value="2" sx={{ height: 478 }}>
 										<div

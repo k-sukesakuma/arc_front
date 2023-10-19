@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -40,24 +40,17 @@ function createData(
 
 const rows = [
 	createData(1, 'John', 'john@example.com', 'xxxxxxxxxx'),
-	createData(2, 'Emily', 'emily@example.com', 'xxxxxxxxxx'),
-	createData(3, 'Steve', 'steve@example.com', 'xxxxxxxxxx'),
-	createData(4, 'Michael', 'michael@example.com', 'xxxxxxxxxx'),
-	createData(5, 'Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
-	createData(6, 'George', 'george@example.com', 'xxxxxxxxxx'),
-	createData(7, 'Lily', 'lily@example.com', 'xxxxxxxxxx'),
-	createData(8, 'Dudley', 'dudley@example.com', 'xxxxxxxxxx'),
-	createData(9, 'Luna', 'luna@example.com', 'xxxxxxxxxx'),
-	createData(10, 'Bill', 'bill@example.com', 'xxxxxxxxxx'),
+	createData(2, 'Anderson', 'anderson@example.com', 'xxxxxxxxxx'),
+	createData(3, 'Emily', 'emily@example.com', 'xxxxxxxxxx'),
 ];
 
-export default function StickyHeadTable({ user_id }: { user_id: number }) {
+export default function DescriptionTable() {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
 	return (
 		<Paper sx={{ width: '100%', overflow: 'hidden' }}>
-			<TableContainer sx={{ height: 430 }}>
+			<TableContainer sx={{ height: 210 }}>
 				<Table stickyHeader aria-label="sticky table">
 					<TableHead>
 						<TableRow>
@@ -72,7 +65,7 @@ export default function StickyHeadTable({ user_id }: { user_id: number }) {
 							))}
 						</TableRow>
 					</TableHead>
-					<TableBody sx={{ width: '100%', overflow: 'hidden' }}>
+					<TableBody sx={{ width: '60%', overflow: 'hidden' }}>
 						{rows
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((row) => {
@@ -83,8 +76,7 @@ export default function StickyHeadTable({ user_id }: { user_id: number }) {
 										tabIndex={-1}
 										key={row.id}
 										style={{
-											backgroundColor:
-												row.id === user_id ? '#E6E6E6' : 'inherit',
+											backgroundColor: row.id === 2 ? '#CCCCCC' : 'inherit',
 										}}
 									>
 										{columns.map((column) => {
