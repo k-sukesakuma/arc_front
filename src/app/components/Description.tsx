@@ -1,5 +1,5 @@
 import React from 'react';
-import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 
@@ -36,7 +36,7 @@ export default function Description() {
 			<Tooltip title="ActiveRecordとは?" placement="top-start">
 				<div className="mt-1.3 ml-10">
 					<IconButton aria-label="delete">
-						<HelpCenterIcon
+						<QuestionAnswerIcon
 							style={{
 								color: 'gray',
 								fontSize: '32.5px',
