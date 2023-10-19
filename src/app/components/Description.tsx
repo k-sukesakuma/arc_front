@@ -70,8 +70,11 @@ export default function Description() {
 								</h2>
 								<hr className="mt-1 mb-2 rounded-lg" />
 								<p className="mb-8">
-									ActiveRecordとは、Ruby on
-									Railsで用いられているRuby言語向けのO/Rマッピングの名称のことを指します。
+									ActiveRecordとは、
+									<strong style={{ color: '#E06666' }}>
+										Ruby on Railsで用いられているRuby言語向けのO/Rマッピング
+									</strong>
+									のことを指します。
 									<br></br>
 								</p>
 								<h2 className="text-2xl font-bold mt-2 mb-2">
@@ -119,7 +122,7 @@ export default function Description() {
 								<h2 className="text-2xl font-bold mt-2 mb-2">おわりに</h2>
 								<hr className="mt-1 mb-2 rounded-lg" />
 								<p className="mb-5">
-									ActiveRecordの仕組みと変換されるSQLを学習して、さらにスキルアップしましょう!
+									current_user.でActiveRecordの仕組みと変換されるSQLを学習して、さらにスキルアップしましょう!
 								</p>
 							</div>
 						</div>
