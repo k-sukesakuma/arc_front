@@ -120,7 +120,6 @@ export default function Description() {
 								<hr className="mt-1 mb-2 rounded-lg" />
 								<p className="mb-5">
 									ActiveRecordの仕組みと変換されるSQLを学習して、さらにスキルアップしましょう!
-									<br></br>
 								</p>
 							</div>
 						</div>
