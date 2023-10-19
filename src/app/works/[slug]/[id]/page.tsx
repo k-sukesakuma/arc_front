@@ -42,58 +42,6 @@ import Description from '@/app/components/Description';
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-interface Column {
-	id: 'name' | 'code' | 'population' | 'size' | 'density';
-	label: string;
-	minWidth?: number;
-	align?: 'right';
-	format?: (value: number) => string;
-}
-
-const columns: Column[] = [
-	{ id: 'name', label: 'Name', minWidth: 170 },
-	{ id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-	{
-		id: 'population',
-		label: 'Population',
-		minWidth: 170,
-		align: 'right',
-		format: (value: number) => value.toLocaleString('en-US'),
-	},
-	{
-		id: 'size',
-		label: 'Size\u00a0(km\u00b2)',
-		minWidth: 170,
-		align: 'right',
-		format: (value: number) => value.toLocaleString('en-US'),
-	},
-	{
-		id: 'density',
-		label: 'Density',
-		minWidth: 170,
-		align: 'right',
-		format: (value: number) => value.toFixed(2),
-	},
-];
-
-interface Data {
-	name: string;
-	code: string;
-	population: number;
-	size: number;
-	density: number;
-}
-
-function createData(
-	name: string,
-	code: string,
-	population: number,
-	size: number
-): Data {
-	const density = population / size;
-	return { name, code, population, size, density };
-}
-
 const style = {
 	position: 'absolute' as 'absolute',
 	top: '50%',
@@ -139,7 +87,6 @@ const Page = () => {
 		}
 	};
 
-	// --------------------------答え合わせ--------------------------------------
 	const [answer, setAnswer] = useState('');
 	const [modalContent, setModalContent] = useState(false);
 
@@ -417,11 +364,15 @@ const Page = () => {
 											<div className="height">{executionsData.result}</div>
 										) : (
 											<Paper sx={{ width: '100%' }}>
-												<TableContainer sx={{ maxHeight: 323 }}>
+												<TableContainer sx={{ height: 323, width: '100%' }}>
 													<Table
+														component="table"
 														stickyHeader
 														aria-label="sticky table"
-														sx={{ maxHight: 323, maxWidth: '' }}
+														sx={{
+															maxHeight: 323,
+															tableLayout: 'auto',
+														}}
 													>
 														<TableHead>
 															{executionsData &&
@@ -442,7 +393,16 @@ const Page = () => {
 																	) {
 																		return null;
 																	}
-																	return <TableCell key={key}>{key}</TableCell>;
+																	return (
+																		<TableCell
+																			key={key}
+																			style={{
+																				width: '200px',
+																			}}
+																		>
+																			{key}
+																		</TableCell>
+																	);
 																})}
 														</TableHead>
 														<TableBody>
@@ -470,7 +430,12 @@ const Page = () => {
 																				{Object.keys(row).map((key) => {
 																					const value = row[key];
 																					return (
-																						<TableCell key={key}>
+																						<TableCell
+																							key={key}
+																							style={{
+																								width: '200px',
+																							}}
+																						>
 																							{value}
 																						</TableCell>
 																					);
@@ -483,7 +448,14 @@ const Page = () => {
 																	) {
 																		return (
 																			<TableRow key={1}>
-																				<TableCell key={1}>{row}</TableCell>
+																				<TableCell
+																					key={1}
+																					style={{
+																						width: '200px',
+																					}}
+																				>
+																					{row}
+																				</TableCell>
 																			</TableRow>
 																		);
 																	}
