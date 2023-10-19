@@ -48,7 +48,7 @@ export default function WorksHeader() {
 						{data?.chapters?.map((chapter: any, index: any) => (
 							<div
 								key={index}
-								className="px-4 py-3 font-semibold rounded-lg hover:bg-slate-200"
+								className="px-4 py-3 font-semibold rounded-lg hover:bg-slate-100"
 							>
 								<Link href={`/works/${slug}/${index + 1}`}>{chapter.name}</Link>
 							</div>
