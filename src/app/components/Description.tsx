@@ -33,7 +33,7 @@ export default function Description() {
 	const markdownContent = '## コンテンツ';
 	return (
 		<div>
-			<Tooltip title="ActiveRecordとは" placement="right-start">
+			<Tooltip title="ActiveRecordとは?" placement="right-start">
 				<div className="mt-1.5 ml-1">
 					<IconButton aria-label="delete">
 						<QuestionAnswerIcon
