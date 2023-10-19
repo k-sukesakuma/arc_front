@@ -122,7 +122,7 @@ export default function Description() {
 								<h2 className="text-2xl font-bold mt-2 mb-2">おわりに</h2>
 								<hr className="mt-1 mb-2 rounded-lg" />
 								<p className="mb-5">
-									ActiveRecordの仕組みと変換されるSQLを学習して、さらにスキルアップしましょう!
+									current_user.でActiveRecordの仕組みと変換されるSQLを学習して、さらにスキルアップしましょう!
 								</p>
 							</div>
 						</div>
