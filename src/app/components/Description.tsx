@@ -30,16 +30,15 @@ export default function Description() {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
-	const markdownContent = '## コンテンツ';
 	return (
 		<div>
 			<Tooltip title="ActiveRecordとは?" placement="top-start">
-				<div className="mt-1.3 ml-10">
+				<div className="mt-1.5 ml-3">
 					<IconButton aria-label="delete">
 						<QuestionAnswerIcon
 							style={{
 								color: 'gray',
-								fontSize: '32.5px',
+								fontSize: '25px',
 							}}
 							onClick={handleOpen}
 						/>
