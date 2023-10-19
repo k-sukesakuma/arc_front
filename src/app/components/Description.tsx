@@ -82,10 +82,11 @@ export default function Description() {
 									mapping)、通称ORMはデータベースとオブジェクト指向プログラミング言語の間の非互換なデータを変換するプログラミング技法です。
 									少しこの説明だと難しいですね。
 								</p>
-								<h2 className="text-2xl font-bold mt-2 mb-2">SQLの翻訳機</h2>
+								<h2 className="text-2xl font-bold mt-2 mb-2">
+									ActiveRecordはSQLの翻訳機
+								</h2>
 								<hr className="mt-1 mb-2 rounded-lg" />
 								<p className="mb-8">
-									言い換えると
 									<strong style={{ color: '#E06666' }}>
 										【RubyコードとSQLの翻訳機】
 									</strong>
