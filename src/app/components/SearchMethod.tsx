@@ -24,7 +24,7 @@ const style = {
 	width: 600,
 	height: 480,
 	bgcolor: 'background.paper',
-	border: '2px solid #000',
+	border: '1px solid #000',
 	boxShadow: 24,
 	p: 4,
 };
@@ -130,4 +130,6 @@ const methods = [
 	{ title: 'ids', url: 'https://railsdoc.com/model#ids' },
 	{ title: 'take', url: 'https://railsdoc.com/model#take' },
 	{ title: 'find_each', url: 'https://railsdoc.com/model#find_each' },
+	{ title: 'joins', url: 'https://railsdoc.com/model#joins' },
+	{ title: 'includes', url: 'https://railsdoc.com/model#includes' },
 ];
