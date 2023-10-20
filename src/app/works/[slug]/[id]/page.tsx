@@ -35,12 +35,9 @@ import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Description from '@/app/components/Description';
-
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -220,8 +217,6 @@ const Page = () => {
 		setLeftValue(newValue);
 	};
 
-	const [copied, setCopied] = useState(false);
-
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
@@ -336,18 +331,22 @@ const Page = () => {
 											<Image
 												src="/relation.png"
 												alt="relation"
-												width={2500}
-												height={3000}
+												width={1000}
+												height={1000}
+												style={{
+													margin: 'auto',
+													display: 'block',
+												}}
 											/>
 										</div>
 									</TabPanel>
-									<TabPanel value="3" sx={{ height: 478 }}>
+									<TabPanel value="3">
 										<div
 											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm mb-2"
 											style={{
 												backgroundColor: '#1E1E1E',
 												height: '100px',
-												minWidth: '580px',
+												width: '600px',
 												overflowY: 'auto',
 												overflowX: 'auto',
 												whiteSpace: 'nowrap',
@@ -560,33 +559,15 @@ const Page = () => {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-						<Typography
-							id="modal-modal-title"
-							variant="h6"
-							component="h2"
-							className="font-semibold"
-						>
-							答え😎
-						</Typography>
-						<CopyToClipboard
-							text={
-								answerPracticesData &&
-								answerPracticesData[Number(id) - 1].answer
-							}
-							onCopy={() => setCopied(true)}
-						>
-							<button>
-								<Tooltip
-									title={copied ? 'コピー済' : 'コピーする'}
-									placement="left-start"
-								>
-									<ContentCopyIcon />
-								</Tooltip>
-							</button>
-						</CopyToClipboard>
-					</div>
-					<Typography id="modal-modal-description" sx={{ mt: 1 }}>
+					<Typography
+						id="modal-modal-title"
+						variant="h6"
+						component="h2"
+						className="font-semibold"
+					>
+						答え😎
+					</Typography>
+					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						<div
 							className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 							style={{
@@ -598,10 +579,8 @@ const Page = () => {
 							}}
 						>
 							<p className="mt-2 text-xl text-slate-200">
-								<span>
-									{answerPracticesData &&
-										answerPracticesData[Number(id) - 1].answer}
-								</span>
+								{answerPracticesData &&
+									answerPracticesData[Number(id) - 1].answer}
 							</p>
 						</div>
 					</Typography>
