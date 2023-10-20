@@ -39,6 +39,9 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Description from '@/app/components/Description';
 
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -216,6 +219,8 @@ const Page = () => {
 	const leftHandleChange = (event: any, newValue: any) => {
 		setLeftValue(newValue);
 	};
+
+	const [copied, setCopied] = useState(false);
 
 	return (
 		<div>
@@ -559,14 +564,36 @@ const Page = () => {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					<Typography
-						id="modal-modal-title"
-						variant="h6"
-						component="h2"
-						className="font-semibold"
-					>
-						答え😎
-					</Typography>
+					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<Typography
+							id="modal-modal-title"
+							variant="h6"
+							component="h2"
+							className="font-semibold"
+						>
+							答え😎
+						</Typography>
+						<CopyToClipboard
+							text={
+								answerPracticesData &&
+								answerPracticesData[Number(id) - 1].answer
+							}
+							onCopy={() => setCopied(true)}
+						>
+							<button>
+								<Tooltip
+									title={copied ? 'コピー済' : 'コピーする'}
+									placement="left-start"
+								>
+									<ContentCopyIcon
+										style={{
+											color: '#1E1E1E',
+										}}
+									/>
+								</Tooltip>
+							</button>
+						</CopyToClipboard>
+					</div>
 					<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 						<div
 							className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
