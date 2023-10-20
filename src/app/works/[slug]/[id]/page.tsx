@@ -351,7 +351,7 @@ const Page = () => {
 											style={{
 												backgroundColor: '#1E1E1E',
 												height: '100px',
-												width: '600px',
+												width: '580px',
 												overflowY: 'auto',
 												overflowX: 'auto',
 												whiteSpace: 'nowrap',
