@@ -301,7 +301,7 @@ const Page = () => {
 											}
 										/>
 									</TabPanel>
-									<TabPanel value="2" sx={{ miHeight: 478 }}>
+									<TabPanel value="2" sx={{ height: 478 }}>
 										<div
 											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 											style={{
@@ -323,7 +323,7 @@ const Page = () => {
 											/>
 										</div>
 									</TabPanel>
-									<TabPanel value="4" sx={{ minHeight: 478 }}>
+									<TabPanel value="4" sx={{ height: 478 }}>
 										<div
 											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 											style={{
@@ -341,7 +341,7 @@ const Page = () => {
 											/>
 										</div>
 									</TabPanel>
-									<TabPanel value="3" sx={{ minHeight: 478 }}>
+									<TabPanel value="3" sx={{ height: 478 }}>
 										<div
 											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm mb-2"
 											style={{
@@ -365,7 +365,7 @@ const Page = () => {
 											<div className="height">{executionsData.result}</div>
 										) : (
 											<Paper sx={{ width: '100%' }}>
-												<TableContainer sx={{ minHeight: 323, width: '100%' }}>
+												<TableContainer sx={{ height: 323, width: '100%' }}>
 													<Table
 														component="table"
 														stickyHeader
