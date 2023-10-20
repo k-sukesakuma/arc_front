@@ -272,7 +272,7 @@ const Page = () => {
 											</div>
 										</TabList>
 									</Box>
-									<TabPanel value="1" sx={{ miHeight: 478 }}>
+									<TabPanel value="1">
 										<CodeEditor onMount={handleEditorDidMount} />
 									</TabPanel>
 								</TabContext>
@@ -581,11 +581,7 @@ const Page = () => {
 									title={copied ? 'コピー済' : 'コピーする'}
 									placement="left-start"
 								>
-									<ContentCopyIcon
-										style={{
-											color: 'gray',
-										}}
-									/>
+									<ContentCopyIcon />
 								</Tooltip>
 							</button>
 						</CopyToClipboard>
