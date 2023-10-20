@@ -1,11 +1,15 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import useSWR from 'swr';
 import axios from 'axios';
 
+import { useParams } from 'next/navigation';
+
 export default function WorksHeader() {
+	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+
 	const pathname = usePathname();
 	const slug = pathname.substring(7);
 
@@ -23,11 +27,24 @@ export default function WorksHeader() {
 	};
 	const displayChapterName = getChapterName(slug);
 
-	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-	const { data, error } = useSWR(
-		`https://current-user-back.onrender.com/api/v1/chapters?slug=${slug}`,
-		fetcher
-	);
+	const [data, setData] = useState<{
+		chapters: any[];
+		description: string;
+	} | null>(null);
+	const [error, setError] = useState(null);
+
+	useEffect(() => {
+		axios
+			.get(
+				`https://current-user-back.onrender.com/api/v1/chapters?slug=${slug}`
+			)
+			.then((res) => {
+				setData(res.data);
+			})
+			.catch((err) => {
+				setError(err);
+			});
+	}, [slug]);
 
 	return (
 		<div className="px-4 sm:px-6 lg:px-8">
