@@ -132,4 +132,5 @@ const methods = [
 	{ title: 'find_each', url: 'https://railsdoc.com/model#find_each' },
 	{ title: 'joins', url: 'https://railsdoc.com/model#joins' },
 	{ title: 'includes', url: 'https://railsdoc.com/model#includes' },
+	{ title: 'all', url: 'https://railsdoc.com/model#model_all' },
 ];
