@@ -117,6 +117,9 @@ export default function Aside() {
 							<MenuItem onClick={handleClose}>
 								<Link href="/works/intermediate">中級編</Link>
 							</MenuItem>
+							<MenuItem onClick={handleClose}>
+								<Link href="/works/advanced">上級編</Link>
+							</MenuItem>
 						</Menu>
 					</div>
 					<SearchMethod />
