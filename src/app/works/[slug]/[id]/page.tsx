@@ -581,11 +581,7 @@ const Page = () => {
 									title={copied ? 'コピー済' : 'コピーする'}
 									placement="left-start"
 								>
-									<ContentCopyIcon
-										style={{
-											color: 'gray',
-										}}
-									/>
+									<ContentCopyIcon />
 								</Tooltip>
 							</button>
 						</CopyToClipboard>
