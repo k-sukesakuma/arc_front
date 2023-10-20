@@ -272,7 +272,7 @@ const Page = () => {
 											</div>
 										</TabList>
 									</Box>
-									<TabPanel value="1" sx={{ miHeight: 478 }}>
+									<TabPanel value="1">
 										<CodeEditor onMount={handleEditorDidMount} />
 									</TabPanel>
 								</TabContext>
