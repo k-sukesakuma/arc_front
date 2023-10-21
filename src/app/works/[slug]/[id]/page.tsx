@@ -336,8 +336,8 @@ const Page = () => {
 											<Image
 												src="/relation.png"
 												alt="relation"
-												width={10000}
-												height={10000}
+												width={1000}
+												height={1000}
 												style={{
 													margin: 'auto',
 													display: 'block',
@@ -346,23 +346,25 @@ const Page = () => {
 										</div>
 									</TabPanel>
 									<TabPanel value="3">
-										<div
-											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm mb-2"
-											style={{
-												backgroundColor: '#1E1E1E',
-												height: '100px',
-												width: '580px',
-												overflowY: 'auto',
-												overflowX: 'auto',
-												whiteSpace: 'nowrap',
-												color: '#6099c8',
-											}}
-											dangerouslySetInnerHTML={{
-												__html: sqlData
-													? sqlData.sql.replace(/;/g, ';<br />')
-													: '',
-											}}
-										/>
+										{sqlData && (
+											<div
+												className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm mb-2"
+												style={{
+													backgroundColor: '#1E1E1E',
+													height: '100px',
+													width: '580px',
+													overflowY: 'auto',
+													overflowX: 'auto',
+													whiteSpace: 'nowrap',
+													color: '#6099c8',
+												}}
+												dangerouslySetInnerHTML={{
+													__html: sqlData
+														? sqlData.sql.replace(/;/g, ';<br />')
+														: '',
+												}}
+											/>
+										)}
 
 										{executionsData &&
 										typeof executionsData === 'object' &&
