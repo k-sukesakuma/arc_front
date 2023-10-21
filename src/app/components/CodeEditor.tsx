@@ -13,7 +13,8 @@ export default function CodeEditor({
 		scrollbar: { verticalScrollbarSize: 0 },
 		renderLineHighlight: 'line',
 		lineHeight: 25,
-		fontSize: 16,
+		fontSize: 20,
+		fontFamily: 'Arial',
 	};
 
 	const handleEditorDidMount = (editor: any, monaco: any) => {
