@@ -328,7 +328,8 @@ const Page = () => {
 											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 											style={{
 												backgroundColor: '#1E1E1E',
-												maxHeight: '440px',
+												width: '900px',
+												height: '440px',
 												overflowY: 'auto',
 												overflowX: 'auto',
 											}}
@@ -336,8 +337,8 @@ const Page = () => {
 											<Image
 												src="/relation.png"
 												alt="relation"
-												width={1000}
-												height={1000}
+												width={10000}
+												height={10000}
 												style={{
 													margin: 'auto',
 													display: 'block',
@@ -355,6 +356,7 @@ const Page = () => {
 												overflowY: 'auto',
 												overflowX: 'auto',
 												whiteSpace: 'nowrap',
+												color: '#6099c8',
 											}}
 											dangerouslySetInnerHTML={{
 												__html: sqlData
@@ -605,7 +607,10 @@ const Page = () => {
 								whiteSpace: 'nowrap',
 							}}
 						>
-							<p className="mt-2 text-xl text-slate-200">
+							<p
+								className="mt-2 text-xl text-slate-200"
+								style={{ color: '#6099c8' }}
+							>
 								{answerPracticesData &&
 									answerPracticesData[Number(id) - 1].answer}
 							</p>
