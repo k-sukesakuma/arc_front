@@ -328,7 +328,6 @@ const Page = () => {
 											className="text-white pt-8 pb-8 pl-3 pr-8 rounded-sm"
 											style={{
 												backgroundColor: '#1E1E1E',
-												width: '900px',
 												height: '440px',
 												overflowY: 'auto',
 												overflowX: 'auto',
