@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 const TimeLine = () => {
+	const [scale, setScale] = useState(1);
 	return (
 		<section className="relative mx-auto max-w-6xl sm:px-6  overflow-hidden mt-20">
 			<article className="md:flex">
@@ -36,7 +37,16 @@ const TimeLine = () => {
 							<div className="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
 								<h1 className="mx-auto text-white font-semibold text-lg">2</h1>
 							</div>
-							<div className="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
+							<div
+								className="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4"
+								tabIndex={0}
+								style={{
+									transition: 'transform 0.3s',
+									transform: `scale(${scale})`,
+								}}
+								onFocus={() => setScale(2)}
+								onBlur={() => setScale(1)}
+							>
 								<h3 className="mb-3 font-bold text-gray-700 text-2xl">
 									チャレンジしたい問題を選択
 								</h3>
