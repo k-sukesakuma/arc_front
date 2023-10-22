@@ -14,7 +14,6 @@ import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import { styled } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
-import { blueGrey } from '@mui/material/colors';
 import CodeEditor from '@/app/components/practices/CodeEditor';
 import * as monaco from 'monaco-editor';
 
