@@ -41,6 +41,16 @@ import Description from '@/app/components/practices/Description';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+interface ExecutionDataType {
+	id: number;
+	name: string;
+	email: string;
+	password: string;
+	title: string;
+	content: string;
+	comment: string;
+}
+
 const style = {
 	position: 'absolute' as 'absolute',
 	top: '50%',
@@ -53,19 +63,34 @@ const style = {
 	p: 4,
 };
 
-interface ExecutionDataType {
-	id: number;
-	name: string;
-	email: string;
-	password: string;
-}
-
 const Page = () => {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 	const [executionData, setExecutionData] = useState<ExecutionDataType[]>([]);
-	const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
 	const [code, setCode] = useState('');
+	const [answer, setAnswer] = useState('');
+	const [modalContent, setModalContent] = useState(false);
+	const [openAnswer, setOpenAnswer] = useState(false);
+	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+	const [page, setPage] = useState(0);
+	const [rowsPerPage, setRowsPerPage] = useState(10);
+	const [open, setOpen] = useState(false);
+	const [value, setValue] = useState('1');
+	const [leftValue, setLeftValue] = useState('1');
+	const [copied, setCopied] = useState(false);
+
+	const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+
+	const handleOpenAnswer = () => setOpenAnswer(true);
+	const handleCloseAnswer = () => setOpenAnswer(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+
+	const params = useParams();
+	const slug = params.slug;
+	const id = params.id;
+
+	const router = useRouter();
 
 	const handleEditorDidMount = (
 		editor: monaco.editor.IStandaloneCodeEditor | null
@@ -86,9 +111,6 @@ const Page = () => {
 		}
 	};
 
-	const [answer, setAnswer] = useState('');
-	const [modalContent, setModalContent] = useState(false);
-
 	const [message, setMessage] = useState('');
 	const executeAnswer = () => {
 		if (editorRef.current) {
@@ -99,17 +121,6 @@ const Page = () => {
 			setAnswer(code);
 		}
 	};
-
-	const [openAnswer, setOpenAnswer] = useState(false);
-
-	const handleOpenAnswer = () => setOpenAnswer(true);
-	const handleCloseAnswer = () => setOpenAnswer(false);
-
-	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-	const params = useParams();
-	const slug = params.slug;
-	const id = params.id;
 
 	const getChapterName = (slug: string | string[]) => {
 		const slugStr = Array.isArray(slug) ? slug[0] : slug;
@@ -130,8 +141,6 @@ const Page = () => {
 	useEffect(() => {
 		setCurrentQuestionIndex(Number(id) - 1);
 	}, [id]);
-
-	const router = useRouter();
 
 	const { data: answerPracticesData, error: answerPracticesError } = useSWR(
 		`https://current-user-back.onrender.com/api/v1/practices?slug=${slug}`,
@@ -179,13 +188,6 @@ const Page = () => {
 		}
 	}, [answersData, executionsError]);
 
-	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(10);
-
-	const [open, setOpen] = useState(false);
-
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
 	const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 		color: theme.palette.getContrastText(grey[50]),
 		backgroundColor: 'white',
@@ -193,19 +195,14 @@ const Page = () => {
 			backgroundColor: '#E6E6E6',
 		},
 	}));
-	const [value, setValue] = useState('1');
 
 	const handleChange = (event: any, newValue: any) => {
 		setValue(newValue);
 	};
 
-	const [leftValue, setLeftValue] = useState('1');
-
 	const leftHandleChange = (event: any, newValue: any) => {
 		setLeftValue(newValue);
 	};
-
-	const [copied, setCopied] = useState(false);
 
 	return (
 		<div>
