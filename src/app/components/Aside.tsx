@@ -63,11 +63,11 @@ export default function Aside() {
 							</Tooltip>
 						) : (
 							<Tooltip title="問題集" placement="right">
-								<a href="/works">
+								<Link href="/works">
 									<IconButton aria-label="works">
 										<AppsIcon />
 									</IconButton>
-								</a>
+								</Link>
 							</Tooltip>
 						)}
 					</div>
