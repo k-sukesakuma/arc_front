@@ -55,21 +55,13 @@ export default function Aside() {
 							alignItems: 'center',
 						}}
 					>
-						{status !== 'authenticated' ? (
-							<Tooltip title="下からログインしてください" placement="right">
+						<Tooltip title="問題集" placement="right">
+							<Link href="/works">
 								<IconButton aria-label="works">
 									<AppsIcon />
 								</IconButton>
-							</Tooltip>
-						) : (
-							<Tooltip title="問題集" placement="right">
-								<Link href="/works">
-									<IconButton aria-label="works">
-										<AppsIcon />
-									</IconButton>
-								</Link>
-							</Tooltip>
-						)}
+							</Link>
+						</Tooltip>
 					</div>
 					<div
 						style={{
