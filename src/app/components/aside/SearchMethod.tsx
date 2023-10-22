@@ -133,4 +133,7 @@ const methods = [
 	{ title: 'joins', url: 'https://railsdoc.com/model#joins' },
 	{ title: 'includes', url: 'https://railsdoc.com/model#includes' },
 	{ title: 'all', url: 'https://railsdoc.com/model#model_all' },
+	{ title: 'group', url: 'https://railsdoc.com/model#group' },
+	{ title: 'pluck', url: 'https://railsdoc.com/model#model_pluck' },
+	{ title: 'count', url: 'https://railsdoc.com/model#count' },
 ];
