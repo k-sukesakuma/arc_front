@@ -2,7 +2,6 @@
 import SearchMethod from './SearchMethod';
 import ArticleLink from './ArticleLink';
 import React from 'react';
-
 import Logo from './Logo';
 import WorksLink from './WorksLink';
 import ChaptersLink from './ChaptersLink';

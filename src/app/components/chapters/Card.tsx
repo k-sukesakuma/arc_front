@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import axios from 'axios';
-
 import { CircularProgress } from '@mui/material';
 
 export default function Card() {

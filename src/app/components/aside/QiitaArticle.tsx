@@ -1,9 +1,7 @@
 'use client';
-
 import React from 'react';
 import useSWR from 'swr';
 import Link from 'next/link';
-
 import { SiQiita } from 'react-icons/si';
 import CircularProgress from '@mui/material/CircularProgress';
 

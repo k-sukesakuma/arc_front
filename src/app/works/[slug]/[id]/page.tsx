@@ -14,7 +14,6 @@ import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import { styled } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
-import { blueGrey } from '@mui/material/colors';
 import CodeEditor from '@/app/components/practices/CodeEditor';
 import * as monaco from 'monaco-editor';
 
@@ -41,9 +40,6 @@ import Description from '@/app/components/practices/Description';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
-const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const style = {
 	position: 'absolute' as 'absolute',
@@ -186,21 +182,11 @@ const Page = () => {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-	const handleChangePage = (event: unknown, newPage: number) => {
-		setPage(newPage);
-	};
-
-	const handleChangeRowsPerPage = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setRowsPerPage(+event.target.value);
-		setPage(0);
-	};
-
 	const [open, setOpen] = useState(false);
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+
 	const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 		color: theme.palette.getContrastText(grey[50]),
 		backgroundColor: 'white',

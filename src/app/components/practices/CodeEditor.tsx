@@ -35,8 +35,6 @@ export default function CodeEditor({
 				'editor.inactiveSelectionBackground': '#D4D4D4',
 			},
 		});
-
-		// テーマの適用
 		editor.updateOptions({ theme: 'myTheme' });
 
 		onMount(editor);

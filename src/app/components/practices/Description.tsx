@@ -2,12 +2,8 @@ import React from 'react';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
 import Image from 'next/image';
 import DescriptionTable from './DescriptionTable';
 
