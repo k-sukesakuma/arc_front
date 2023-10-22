@@ -1,8 +1,8 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import Aside from '@/app/components/Aside';
-import DbTable from '@/app/components/DbTable';
+import Aside from '@/app/components/aside/Aside';
+import DbTable from '@/app/components/practices/DbTable';
 import { Box, Grid, Tab } from '@mui/material';
 import { TabContext } from '@mui/lab';
 import TabList from '@mui/lab/TabList';
@@ -15,7 +15,7 @@ import { styled } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 import { blueGrey } from '@mui/material/colors';
-import CodeEditor from '@/app/components/CodeEditor';
+import CodeEditor from '@/app/components/practices/CodeEditor';
 import * as monaco from 'monaco-editor';
 
 import Typography from '@mui/material/Typography';
@@ -37,7 +37,7 @@ import { useRouter } from 'next/navigation';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 import TwitterIcon from '@mui/icons-material/Twitter';
-import Description from '@/app/components/Description';
+import Description from '@/app/components/practices/Description';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';

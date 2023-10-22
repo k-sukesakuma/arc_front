@@ -1,6 +1,6 @@
 import React from 'react';
-import Aside from '../components/Aside';
-import QiitaArticle from '../components/QiitaArticle';
+import Aside from '../components/aside/Aside';
+import QiitaArticle from '../components/aside/QiitaArticle';
 
 export default function page() {
 	return (

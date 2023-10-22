@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import NextAuthProvider from '@/providers/NextAuth';
-import GoogleAnalytics from './components/GoogleAnalytics';
 
 import { Analytics } from '@vercel/analytics/react';
 
@@ -30,7 +29,6 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<GoogleAnalytics />
 				<NextAuthProvider>
 					<Toaster position="bottom-center" reverseOrder={true} />
 					{children}
