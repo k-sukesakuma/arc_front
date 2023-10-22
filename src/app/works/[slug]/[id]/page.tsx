@@ -42,9 +42,6 @@ import Description from '@/app/components/practices/Description';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const apiUrl = process.env.NEXTAUTH_URL_INTERNAL;
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
 const style = {
 	position: 'absolute' as 'absolute',
 	top: '50%',
@@ -183,19 +180,8 @@ const Page = () => {
 		}
 	}, [answersData, executionsError]);
 
-	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-	const handleChangePage = (event: unknown, newPage: number) => {
-		setPage(newPage);
-	};
-
-	const handleChangeRowsPerPage = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setRowsPerPage(+event.target.value);
-		setPage(0);
-	};
+	const [page, setPage] = useState(0);
+	const [rowsPerPage, setRowsPerPage] = useState(10);
 
 	const [open, setOpen] = useState(false);
 
