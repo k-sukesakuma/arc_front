@@ -15,7 +15,7 @@ export default function TrialButton() {
 
 			<Link
 				href="/works/trial"
-				className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-800 rounded-lg hover:bg-gray-200 hover:text-slate-800"
+				className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-slate-800 rounded-lg hover:bg-slate-300"
 			>
 				こちらから
 				<svg
