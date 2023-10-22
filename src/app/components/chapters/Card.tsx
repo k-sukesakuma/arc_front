@@ -42,11 +42,11 @@ export default function Card() {
 			)
 			.then((res) => {
 				setData(res.data);
-				setLoading(false);
+				setLoading(true);
 			})
 			.catch((err) => {
 				setError(err);
-				setLoading(false);
+				setLoading(true);
 			});
 	}, [slug]);
 
@@ -55,6 +55,10 @@ export default function Card() {
 			{loading ? (
 				<div className="flex items-center justify-center h-screen  w-screen">
 					<CircularProgress style={{ color: 'grey' }} />
+					<h3 className="text-gray-600 text-xl ml-3 font-semibold">
+						表示まで時間がかかる場合がございます。<br></br>
+						現在原因を調査中です。
+					</h3>
 				</div>
 			) : (
 				<div className="px-4 sm:px-6 lg:px-8">
