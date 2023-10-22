@@ -1,18 +1,12 @@
 'use client';
-
 import * as React from 'react';
 import { useSession } from 'next-auth/react';
-
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import ArticleIcon from '@mui/icons-material/Article';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-
 import Box from '@mui/material/Box';
-
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
