@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Motion from '@/app/components/motionWrapper/motionWrapper';
 
-export default function Cards() {
+export default function Card() {
 	return (
 		<div>
 			<header>
