@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import Header from './components/Header';
-import TimeLine from './components/TimeLine';
-import Footer from './components/Footer';
-import Aside from './components/Aside';
+import Header from './components/top/Header';
+import TimeLine from './components/top/TimeLine';
+import Footer from './components/top/Footer';
+import Aside from './components/aside/Aside';
 
 export default function Home() {
 	return (

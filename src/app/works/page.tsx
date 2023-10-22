@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Aside from '../components/Aside';
+import Aside from '../components/aside/Aside';
 import Card from '../components/works/Card';
 
 const page = () => {
