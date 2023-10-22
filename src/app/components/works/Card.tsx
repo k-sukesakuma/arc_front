@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Motion from '@/app/components/motionWrapper/motionWrapper';
 import { useSession } from 'next-auth/react';
 import TrialButton from './TrialButton';
