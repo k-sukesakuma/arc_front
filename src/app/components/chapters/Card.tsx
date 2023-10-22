@@ -42,11 +42,11 @@ export default function Card() {
 			)
 			.then((res) => {
 				setData(res.data);
-				setLoading(true);
+				setLoading(false);
 			})
 			.catch((err) => {
 				setError(err);
-				setLoading(true);
+				setLoading(false);
 			});
 	}, [slug]);
 
