@@ -46,7 +46,6 @@ export default function CodeEditor({
 		<Editor
 			height="440px"
 			defaultLanguage="ruby"
-			defaultValue={'\n'.repeat(16)}
 			loading={<CircularProgress style={{ color: 'grey' }} />}
 			className=" overflow-hidden"
 			options={options}
