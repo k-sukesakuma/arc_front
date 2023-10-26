@@ -41,6 +41,8 @@ import Description from '@/app/components/practices/Description';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+
 interface ExecutionDataType {
 	id: number;
 	name: string;
@@ -108,6 +110,12 @@ const Page = () => {
 				lineEnding: '\n',
 			});
 			setCode(code);
+		}
+	};
+
+	const resetCode = () => {
+		if (editorRef.current) {
+			editorRef.current.setValue('');
 		}
 	};
 
@@ -244,6 +252,22 @@ const Page = () => {
 															onClick={(event) => {
 																executeCode();
 																setValue('3');
+															}}
+															style={{
+																color: 'gray',
+															}}
+														/>
+													</IconButton>
+												</Tooltip>
+												<Tooltip
+													title="リセットする"
+													placement="left-start"
+													style={{ marginLeft: '425px' }}
+												>
+													<IconButton aria-label="delete">
+														<RestartAltIcon
+															onClick={(event) => {
+																resetCode();
 															}}
 															style={{
 																color: 'gray',
