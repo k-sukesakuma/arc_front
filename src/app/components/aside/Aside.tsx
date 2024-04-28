@@ -10,7 +10,7 @@ import AuthenticateButton from './AuthenticateButton';
 
 export default function Aside() {
 	return (
-		<div>
+		<div className='hidden md:block'>
 			<aside className="border-r w-20 h-screen bg-slate-100 sticky top-0 flex flex-col items-center py-8 flex-shrink-0 justify-between">
 				<div>
 					<Logo />
