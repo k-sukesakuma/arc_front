@@ -13,7 +13,7 @@ const Header = () => {
 							<Image src="/logo.png" alt="" width={110} height={110} />				
 						</div>
 						<div className='mt-7'>
-							<h1 className="text-4xl font-bold text-slate-600 md:text-xl">
+							<h1 className="text-2xl font-bold text-slate-600 sm:text-4xl">
 								メンテナンス中
 							</h1>
 						</div>
