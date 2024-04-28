@@ -19,7 +19,7 @@ const Header = () => {
 						</div>
 						<div className='mt-7'>
 	  				        <p className='text-gray-400'>
-							    current_user.はただいまメンテナンスを行なっています。
+							    current_user.はただいまメンテナンスを行っています。
 						    </p>
 						    <p className='text-gray-400'>
 						        お問い合わせは
