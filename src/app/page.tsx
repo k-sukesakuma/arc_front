@@ -11,11 +11,8 @@ export default function Home() {
 		<div>
 			<main className="flex bg-slate-100 relative">
 				<Aside />
-
 				<section className="flex-grow">
 					<Header />
-					<TimeLine />
-					<Footer />
 				</section>
 			</main>
 		</div>
