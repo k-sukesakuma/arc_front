@@ -7,9 +7,6 @@ const page = () => {
 		<div>
 			<main className="flex bg-slate-100 relative">
 				<Aside />
-				<section className="flex-grow">
-					<Card />
-				</section>
 			</main>
 		</div>
 	);

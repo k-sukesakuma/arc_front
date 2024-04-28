@@ -1,5 +1,4 @@
 import { IconButton, Tooltip } from '@mui/material';
-import Link from 'next/link';
 import React from 'react';
 import AppsIcon from '@mui/icons-material/Apps';
 
@@ -13,11 +12,9 @@ export default function WorksLink() {
 			}}
 		>
 			<Tooltip title="問題集" placement="right">
-				<Link href="/works">
-					<IconButton aria-label="works">
-						<AppsIcon />
-					</IconButton>
-				</Link>
+				<IconButton aria-label="works">
+					<AppsIcon />
+				</IconButton>
 			</Tooltip>
 		</div>
 	);
