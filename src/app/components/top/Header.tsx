@@ -13,13 +13,13 @@ const Header = () => {
 							<Image src="/logo.png" alt="" width={110} height={110} />				
 						</div>
 						<div className='mt-7'>
-							<h1 className="text-4xl font-bold text-slate-600">
+							<h1 className="text-4xl font-bold text-slate-600 md:text-xl">
 								メンテナンス中
 							</h1>
 						</div>
 						<div className='mt-7'>
 	  				        <p className='text-gray-400'>
-							    current_user.はただいまメンテナンスを行っています。
+							    current_user.はただいまメンテナンス中です。
 						    </p>
 						    <p className='text-gray-400'>
 						        お問い合わせは
