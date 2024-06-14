@@ -1,16 +1,15 @@
-'use client';
 import React from 'react';
 import Aside from '../components/aside/Aside';
-import Card from '../components/works/Card';
+import QiitaArticle from '../components/aside/QiitaArticle';
 
-const page = () => {
+export default function page() {
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
 				<Aside />
+
+				<QiitaArticle />
 			</main>
 		</div>
 	);
-};
-
-export default page;
+}

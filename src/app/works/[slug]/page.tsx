@@ -1,18 +1,12 @@
 'use client';
 import React from 'react';
-import Aside from '@/app/components/Aside';
-import ChaptersHeader from '@/app/components/ChaptersHeader';
-import ChapterCards from '@/app/components/ChapterCards';
-
+import Aside from '@/app/components/aside/Aside';
+import Card from '@/app/components/chapters/Card';
 const page = () => {
 	return (
 		<div>
 			<main className="flex bg-slate-100 relative">
 				<Aside />
-				<section className="flex-grow">
-					<ChaptersHeader />
-					<ChapterCards />
-				</section>
 			</main>
 		</div>
 	);

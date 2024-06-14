@@ -1,23 +1,20 @@
 'use client';
 
 import Image from 'next/image';
-import Header from './components/Header';
-import TimeLine from './components/TimeLine';
-import Footer from './components/Footer';
-import LoginButton from './components/LoginButton';
+import Header from './components/top/Header';
+import TimeLine from './components/top/TimeLine';
+import Footer from './components/top/Footer';
+import Aside from './components/aside/Aside';
 
-export default async function Home() {
+export default function Home() {
 	return (
 		<div>
-			<main className="relative">
-				<section className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 overflow-hidden">
+			<main className="flex bg-slate-100 relative">
+				<Aside />
+				<section className="flex-grow">
 					<Header />
 				</section>
 			</main>
-			<LoginButton />
-			<TimeLine />
-
-			<Footer />
 		</div>
 	);
 }
